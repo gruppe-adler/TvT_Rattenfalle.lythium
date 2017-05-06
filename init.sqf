@@ -253,6 +253,10 @@ if (hasInterface) then {
 	};
 
 	if (playerSide == independent) then {
+
+		player setVariable ["player GRAD_pilotTracking_isPilot", true];
+		
+		[] execVM "grad_pilotTracking\initPilotTracking.sqf";
 		[] execVM "player\pilotTeleportListener.sqf";
 		[] execVM "player\addSignalPistolEH.sqf";
 		[] spawn checkJIP;
