@@ -1,5 +1,5 @@
-#include "grad_buymenu\rscTitles\_defines.hpp"
-#include "grad_buymenu\rscTitles\_dialogs.hpp"
+#include "rscTitles\_defines.hpp"
+#include "rscTitles\_dialogs.hpp"
 #include "node_modules\GRAD_leaveNotes\UI\leaveNotes_dialog.hpp"
 
 OnLoadMission = "TvT_Rattrap";

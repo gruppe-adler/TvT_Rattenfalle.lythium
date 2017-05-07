@@ -34,9 +34,6 @@ createCrashSite=  {
 		_x setVehicleLock "UNLOCKED";
 	}forEach [
 	us_hq1,
-	us_hq2,
-	us_hq3,
-	us_hq4,
 	rebel_hq1,
 	rebel_hq2,
 	rebel_hq3,

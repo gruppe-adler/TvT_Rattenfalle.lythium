@@ -139,8 +139,9 @@ if (isServer) then {
 	publicVariable "CHANCE_TO_REVEAL_OPFOR";
 
 
-	0 = [] execVM "server\serverTeleportListener.sqf";
-	0 = [] execVM "server\selectSpawnPosition.sqf";
+	[] execVM "server\serverTeleportListener.sqf";
+	[] execVM "server\selectSpawnPosition.sqf";
+	[] execVM "grad_pilotTracking\initPilotTracking.sqf";
 
 	[] spawn {
 		waitUntil {(REBEL_SPAWN select 0 != 0) && (US_SPAWN select 0 != 0)}; // wait until everything is neatly set up

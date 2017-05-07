@@ -1,4 +1,6 @@
-_string = format ["mrk_pilot_%1", name player];
+params ["_unit"];
+
+_string = format ["mrk_pilot_%1", name _unit];
 
 _marker = createMarker [_string, [0, 0, 0]];
 _string setMarkerType "mil_circle";
