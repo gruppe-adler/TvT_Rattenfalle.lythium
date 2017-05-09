@@ -9,29 +9,31 @@ if (hasInterface) then {
 
 
 if (isServer) then {
-
+	
 	// for local test purposes
 	if (!isMultiplayer) then {
 		{
 			if (!isPlayer _x && _x getVariable ["GRAD_pilotTracking_isPilot", false]) then {
-				[_x] call grad_pilotTracking_fnc_clientLoop; 
+				_marker = [_x] call GRAD_pilotTracking_fnc_createPilotMarker;
+				_x setVariable ["GRAD_pilotTracking_markerObj", _marker];
 			};
 		} forEach allUnits;
 	};
 
 	// body bag scanner
-	["placedInBodyBag", {
+	["ace_placedInBodyBag", {
 	        diag_log format ["placedInBodyBag eh %1", _this];
 	        params ["_deadGuy", "_bodyBag"];
-	        private _name = [_deadGuy] call ace_common_fnc_getName;
+
+	        /* private _name = [_deadGuy] call ace_common_fnc_getName; */
 	        private _isPilot = _deadGuy getVariable ["GRAD_pilotTracking_isPilot", false];
-	        private _marker = _deadGuy getVariable ["grad_pilotTracking_markerObj", objNull];
+	        private _marker = _deadGuy getVariable ["GRAD_pilotTracking_markerObj", objNull];
 
 	        if (_isPilot) then {
-	        	[_bodyBag, _marker] call grad_pilotTracking_fnc_serverLoop;
+	        	[_bodyBag, _marker] call GRAD_pilotTracking_fnc_serverLoop;
 	        	diag_log format ["putting %1 into bodybag %2, its the pilot.", _deadGuy, _bodyBag];
 	        } else {
 	        	diag_log format ["putting %1 into bodybag %2, its NOT the pilot.", _deadGuy, _bodyBag];
 	    	};
-	}] call ace_common_fnc_addEventHandler;
+	}] call CBA_fnc_addEventHandler;
 };

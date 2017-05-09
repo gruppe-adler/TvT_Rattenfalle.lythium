@@ -7,4 +7,10 @@ class GRAD_pilotTracking {
 		class createPilotMarker {};
 		class gpsCanReceive {};
 	};
+
+	class server {
+		file = grad_pilotTracking\functions\server;
+
+		class serverLoop {};
+	};
 };
