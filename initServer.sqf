@@ -1,7 +1,6 @@
 [] execVM "server\civPointedAtListener.sqf";
 [] execVM "server\civQuestioning.sqf";
-[] execVM "initWaveRespawn.sqf";
-mcd_fnc_strToLoadout = compile preprocessFileLineNumbers "loadouts\fnc_strToLoadout.sqf";
+
 
 // description.ext parameters
 _timeOfDay = "TimeOfDay" call BIS_fnc_getParamValue;

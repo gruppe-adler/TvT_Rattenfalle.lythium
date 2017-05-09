@@ -17,11 +17,24 @@ respawnDialog = 0;
 
 class cfgFunctions {
     #include "grad_pilotTracking\cfgFunctions.hpp"
+    #include "node_modules\grad-loadout\cfgFunctions.hpp"
+    #include "node_modules\grad-gpsTracker\cfgFunctions.hpp"
 };
 
 class rscTitles {
     #include "rscTitles\rscTitles.hpp"
 };
+
+class Loadouts {
+    baseDelay = 1;      // base delay in seconds before applying loadouts on mission start
+    handleRadios = 1;   // radios are handled by grad-loadout
+    resetLoadout = 0;   // start with empty loadouts instead of modifying existing loadout
+
+  class Faction {
+        #include "node_modules\grad-factions\loadouts.hpp"
+    };
+};
+
 
 class Header
 {
@@ -29,7 +42,6 @@ class Header
   minPlayers = 3;
   maxPlayers = 26;
 };
-
 
 class Params
 {
@@ -47,39 +59,7 @@ class Params
     values[] = {0,1,2,3};
     texts[] = {"SUNNY DAY","CLOUDY DAY","RAINY DAY","RANDOM WEATHER"};
     default = 0;
-  };
-
-  class bluforwavesize
-  {
-    title = "BLUFOR Respawn Wave Size";
-    values[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
-    texts[] = {"Automatic", "1", "2","3","4","5","6","7","8","9","10","11","12","13","14","15"};
-    default = 2;
-  };
-
-	class opforwavesize
-	{
-		title = "OPFOR Respawn Wave Size";
-		values[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
-		texts[] = {"Automatic", "1", "2","3","4","5","6","7","8","9","10","11","12","13","14","15"};
-		default = 2;
-	};
-
-  class respawntime
-  {
-    title = "Player Respawn Time";
-    values[] = {30,60,90,120,150,180,210,240,270,300,330,360,390,420,450,480,510,540,570,600};
-    texts[] = {"0.5 min","1 min","1.5 min", "2 min", "2.5 min", "3 min", "3.5 min", "4 min", "4.5 min", "5 min", "5.5 min", "6 min", "6.5 min", "7 min", "7.5 min", "8 min", "8.5 min", "9 min", "9.5 min", "10 min"};
-    default = 30;
-  };
-
-  class waverespawntime
-  {
-    title = "Wave Respawn Time";
-    values[] = {30,60,90,120,150,180,210,240,270,300,330,360,390,420,450,480,510,540,570,600};
-    texts[] = {"0.5 min","1 min","1.5 min", "2 min", "2.5 min", "3 min", "3.5 min", "4 min", "4.5 min", "5 min", "5.5 min", "6 min", "6.5 min", "7 min", "7.5 min", "8 min", "8.5 min", "9 min", "9.5 min", "10 min"};
-    default = 60;
-  };
+  };  
 
   class debugMode
   {

@@ -31,6 +31,7 @@ if (isServer) then {
 
 	        if (_isPilot) then {
 	        	[_bodyBag, _marker] call GRAD_pilotTracking_fnc_serverLoop;
+	        	[_bodyBag, true] call grad_gpsTracker_fnc_setTarget;
 	        	diag_log format ["putting %1 into bodybag %2, its the pilot.", _deadGuy, _bodyBag];
 	        } else {
 	        	diag_log format ["putting %1 into bodybag %2, its NOT the pilot.", _deadGuy, _bodyBag];

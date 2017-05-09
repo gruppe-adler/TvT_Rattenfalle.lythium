@@ -14,13 +14,16 @@ if (hasInterface) then {
 	cutText ["", "BLACK FADED",1000];
 };
 
+["BLU_F", "UsMPT"] call GRAD_Loadout_fnc_FactionSetLoadout;
+["OPF_F", "Taliban"] call GRAD_Loadout_fnc_FactionSetLoadout;
+["IND_F", "UsDownedPilot"] call GRAD_Loadout_fnc_FactionSetLoadout;
+
 setViewDistance 3500;
 enableSentences false;
 enableRadio false;
 // 0 fadeRadio 0;
 showChat false;
-// functional variables - do not change!
-// player_respawned = 0;
+
 waitUntil {!isNil "DEBUG"};
 diag_log format ["DEBUG IS %1"];
 if (DEBUG) then {
@@ -45,9 +48,6 @@ call compile preprocessfile "civilianOutrage\randomCivilian.sqf";
 If(isNil "spawn_help_fnc_compiled")then{call compile preprocessFileLineNumbers "helpers\findPos.sqf"};
 call compile preprocessfile "SHK_pos\shk_pos_init.sqf";
 call compile preprocessfile "helpers\spf_createRelPos.sqf";
-call compile preprocessFileLineNumbers "loadouts\getUnitLoadout\blufor.sqf";
-call compile preprocessFileLineNumbers "loadouts\getUnitLoadout\opfor.sqf";
-call compile preprocessFileLineNumbers "loadouts\getUnitLoadout\independent.sqf";
 []execVM "helpers\findSpawnPos.sqf";
 []execVM "helpers\addActionMP.sqf";
 

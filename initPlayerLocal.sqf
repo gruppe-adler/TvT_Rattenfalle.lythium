@@ -1,13 +1,3 @@
-//define the paths to your loadout init for each side (e.g. bluforLoadoutPath = "loadouts\bluforInit.sqf"; if you use one init for all sides, enter the same value for each variable)
-//define params for loadout init for each side (e.g. "[roleDescription player]"; if you use one init for all sides, enter the same value for each variable)
-//leave empty if you are not using custom loadouts
-bluforLoadoutPath = "";
-bluforLoadoutParams = "[]";
-opforLoadoutPath = "";
-opforLoadoutParams = "[]";
-indepLoadoutPath = "";
-indepLoadoutParams = "[]";
-
  ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups;
 
 if (isMultiplayer) then {
@@ -16,19 +6,21 @@ if (isMultiplayer) then {
 	joinTime = time;
 };
 
-[] execVM "initWaveRespawn.sqf";
+GRAD_GPS_TRACKER_OPEN = false;
+
+_openGPSTracker = ["ACE_SelfActions", "Open GPS Tracker", "",
+ {[pilot,0] call grad_gpsTracker_fnc_openTitle; GRAD_GPS_TRACKER_OPEN = true;},
+  {!(player getVariable ["GRAD_isCrashPilot",false]) && !GRAD_GPS_TRACKER_OPEN}] call ace_interact_menu_fnc_createAction;
+
+[typeOf player, 1, ["ACE_SelfActions"], _openGPSTracker] call ace_interact_menu_fnc_addActionToClass;
 
 
-// get loadout for the first time, just to make sure
+_closeGPSTracker = ["ACE_SelfActions", "Close GPS Tracker", "",
+ {call grad_gpsTracker_fnc_closeTitle; GRAD_GPS_TRACKER_OPEN = false;},
+  {!(player getVariable ["GRAD_isCrashPilot",false]) && GRAD_GPS_TRACKER_OPEN}] call ace_interact_menu_fnc_createAction;
 
-_loadout = player getVariable ["GRAD_loadout","none"];
-if (_loadout != "none") then {
-		_stringLoadout = "GRAD_getUnitLoadout_" + _loadout;
-		diag_log format ["calling loadout %1",_stringLoadout];
-		player setUnitLoadout [(missionNamespace getVariable [_stringLoadout, []]),true];
-};
+[typeOf player, 1, ["ACE_SelfActions"], _closeGPSTracker] call ace_interact_menu_fnc_addActionToClass;
 
-// 0 = [] execVM "player\animations\addBuyInteraction.sqf";
 
 
 // reset any attempt to raise or lower rating
@@ -37,15 +29,9 @@ player addEventhandler ["HandleRating", {
 	}];
 
 
-// _codeLoadout = compile _stringLoadout;
-// call compile ("setUnitLoadout " + [_codeLoadout,true]);
-//call compile format ["%2 call setUnitLoadout [GRAD_getUnitLoadout_%1,true]", _stringLoadout, player];
-// player setUnitLoadout [_codeLoadout, true];
-
 0 = execVM "player\animations\addWavingInteraction.sqf";
-0 = execVM "player\animations\addBuyInteraction.sqf";
 0 = execVM "player\addObjectiveListener.sqf";
-mcd_fnc_strToLoadout = compile preprocessFileLineNumbers "loadouts\fnc_strToLoadout.sqf";
+
 
 // for local execution of interrogation actions
 GRAD_fnc_addQuestioningAction = {
@@ -72,5 +58,4 @@ GRAD_fnc_showQuestioningAnswer = {
 		};
 
 		cutText [format ["%1",_answer],"PLAIN"];
-
 };
