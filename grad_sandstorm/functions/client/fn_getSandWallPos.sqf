@@ -1,0 +1,1 @@
+getMarkerPos "mrk_sandstorm"

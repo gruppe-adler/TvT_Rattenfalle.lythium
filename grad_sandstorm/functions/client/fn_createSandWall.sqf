@@ -26,7 +26,7 @@ for [{_x= 1},{_x <= _count},{_x = _x + 1}] do {
 
 	_sandWalls = _sandWalls + [_singleSandWall];
 
-	_startPosition = [_startPosition select 0, (_startPosition select 1) + _radius];
+	_startPosition = [_startPosition select 0, (_startPosition select 1) + (_radius*2)];
 };
 
 // trigger for air vehicles

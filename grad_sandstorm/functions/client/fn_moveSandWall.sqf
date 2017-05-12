@@ -1,3 +1,10 @@
-params ["_sandWalls", "_speed"];
+params ["_sandWalls", "_distance"];
 
-{ _x setPos (_x getPos [_speed, windDir]); } forEach _sandWalls;
+_newOrigin = call grad_sandstorm_fnc_getSandWallPos;
+
+{
+	_pos = [_newOrigin select 0, (_newOrigin select 1) + _distance];
+	_x setPos _pos;
+} forEach _sandWalls;
+
+

@@ -10,6 +10,8 @@ class GRAD_sandstorm {
 		class createSandWall {};
 		class createSmallParticles {};
 		class createSticks {};
+		class getSandWallPos {};
+		class initClient {};
 		class moveParticles {};
 		class moveSandWall {};
 
@@ -18,6 +20,8 @@ class GRAD_sandstorm {
 	class server {
 		file = grad_sandstorm\functions\server;
 
+		class serverLoop {};
+		class syncSandWall {};
 		
 	};
 };
