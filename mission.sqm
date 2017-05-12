@@ -8,14 +8,18 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=402;
+		nextID=405;
+	};
+	class MarkerIDProvider
+	{
+		nextID=1;
 	};
 	class Camera
 	{
-		pos[]={11827.453,28.268967,2389.0972};
-		dir[]={-0.46837065,-0.32798773,0.82042593};
-		up[]={-0.1626175,0.94467336,0.28485057};
-		aside[]={0.86846477,1.094304e-007,0.49579477};
+		pos[]={11837.231,28.268967,2370.8154};
+		dir[]={-0.4645924,-0.33265689,0.82069659};
+		up[]={-0.16388546,0.94303823,0.28950161};
+		aside[]={0.87025797,1.7031562e-007,0.49264845};
 	};
 };
 binarizationWanted=0;
@@ -315,13 +319,11 @@ class Mission
 	class Intel
 	{
 		timeOfChanges=1800.0002;
-		startWeather=0.30000001;
-		startWind=0.1;
-		startWaves=0.1;
-		forecastWeather=0.30000001;
-		forecastWind=0.1;
-		forecastWaves=0.1;
-		forecastLightnings=0.1;
+		startWeather=0;
+		startWind=0;
+		forecastWeather=0;
+		forecastWind=0;
+		forecastWaves=0;
 		rainForced=1;
 		lightningsForced=1;
 		wavesForced=1;
@@ -331,12 +333,14 @@ class Mission
 		day=6;
 		hour=12;
 		minute=0;
-		startFogDecay=0.013;
-		forecastFogDecay=0.013;
+		startFogBase=-1000;
+		forecastFogBase=-1000;
+		startFogDecay=0;
+		forecastFogDecay=0;
 	};
 	class Entities
 	{
-		items=129;
+		items=130;
 		class Item0
 		{
 			dataType="Marker";
@@ -11801,6 +11805,18 @@ class Mission
 			id=400;
 			type="ACE_bodyBagItem";
 			atlOffset=-0.0013046265;
+		};
+		class Item129
+		{
+			dataType="Marker";
+			position[]={11446.66,0,1761.689};
+			name="mrk_sandstorm";
+			text="sandstorm";
+			type="mil_ambush";
+			colorName="ColorKhaki";
+			angle=323.31998;
+			id=402;
+			atlOffset=-26.924034;
 		};
 	};
 };

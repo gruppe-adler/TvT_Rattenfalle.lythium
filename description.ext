@@ -17,6 +17,7 @@ respawnDialog = 0;
 
 class cfgFunctions {
     #include "grad_pilotTracking\cfgFunctions.hpp"
+    #include "grad_sandstorm\cfgFunctions.hpp"
     #include "node_modules\grad-loadout\cfgFunctions.hpp"
     #include "node_modules\grad-gpsTracker\cfgFunctions.hpp"
 };
@@ -85,6 +86,22 @@ class ace_map_BFT_HideAiGroups {
 	};
 };
 
+class CfgMusic
+{
+  tracks[]={"MKY_Blizzard","MKY_Snowfall"};
+
+  class MKY_Blizzard
+  {
+    name = "";
+    sound[] = {"\MKY\sounds\m0nkey_blizzard.ogg", db+0, 1.0};
+  };
+  class MKY_Snowfall
+  {
+    name = "";
+    sound[] = {"\MKY\sounds\m0nkey_snowfall.ogg", db+0, 1.0};
+  };
+};
+
 class CfgSounds
 {
 	sounds[] = {
@@ -131,6 +148,46 @@ class CfgSounds
   fizz_group2,
   fizz_group3,
   fizz_group4};
+
+  class uragan_1
+  {
+    name = "uragan_1";
+    sound[] = {"\sound\uragan_1.ogg", db+5, 1};
+    titles[] = {1, ""};
+  };
+  class bcg_wind
+  {
+    name = "bcg_wind";
+    sound[] = {"\sound\bcg_wind.ogg", db+5, 1};
+    titles[] = {1, ""};
+  };  
+  class rafala_1
+  {
+    name = "rafala_1";
+    sound[] = {"\sound\rafala_1.ogg", db+10, 1};
+    titles[] = {1, ""};
+  };  
+  class rafala_4_dr
+  {
+    name = "rafala_4_dr";
+    sound[] = {"\sound\rafala_4_dr.ogg", db+1, 1};
+    titles[] = {1, ""};
+  };  
+  class rafala_5_st
+  {
+    name = "rafala_5_st";
+    sound[] = {"\sound\rafala_5_st.ogg", db+1, 1};
+    titles[] = {1, ""};
+  };
+  class sandstorm
+  {
+    name = "sandstorm";
+    sound[] = {"\sound\sandstorm.ogg", db+10, 1};
+    titles[] = {1, ""};
+  };  
+
+
+  
 	class beam
 	{
 		// how the sound is referred to in the editor (e.g. trigger effects)
