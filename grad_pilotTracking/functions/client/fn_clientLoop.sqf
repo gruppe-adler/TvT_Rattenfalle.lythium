@@ -6,7 +6,6 @@ _marker = call grad_pilotTracking_fnc_createPilotMarker;
 
 GRAD_pilotTracking_progress = 0;
 
-
 _clientLoop = [{
     params ["_args", "_handle"];
     _args params ["_marker", "_unit"];
@@ -32,13 +31,12 @@ _clientLoop = [{
     	_unit setHit ["head", 1];
     };
 
-    if (vehicle _unit != _unit && {
-    	vehicle _unit getVariable ["GRAD_pilotTracking_isVehicleMedical", false]
-    }) then {
-        _marker setMarkerPos (getPos _unit);
-    }
-	else {
 
+    if (vehicle _unit != _unit) then {
+        if (vehicle _unit getVariable ["GRAD_pilotTracking_isVehicleMedical", false]) then {
+            _marker setMarkerPos (getPos _unit);
+        }
+    } else {        
         // GPS
         if ([_unit] call grad_pilotTracking_fnc_gpsCanReceive) then {
             _marker setMarkerPos (getPos _unit);

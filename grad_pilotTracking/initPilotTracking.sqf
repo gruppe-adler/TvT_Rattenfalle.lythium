@@ -9,12 +9,16 @@ if (hasInterface) then {
 
 
 if (isServer) then {
+
+	GRAD_pilotTracking_trackingRange = 2000;
+	publicVariable "GRAD_pilotTracking_trackingRange";
 	
 	// for local test purposes
 	if (!isMultiplayer) then {
 		{
 			if (!isPlayer _x && _x getVariable ["GRAD_pilotTracking_isPilot", false]) then {
 				_marker = [_x] call GRAD_pilotTracking_fnc_createPilotMarker;
+				[_x] call grad_pilotTracking_fnc_clientLoop;
 				_x setVariable ["GRAD_pilotTracking_markerObj", _marker];
 			};
 		} forEach allUnits;

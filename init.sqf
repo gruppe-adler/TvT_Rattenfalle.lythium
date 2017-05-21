@@ -60,7 +60,7 @@ call compile preprocessfile "helpers\spf_createRelPos.sqf";
 
 [] spawn {
 	#define MAKEFIRE_TREERADIUS 40                                                //distance player-->trees in order to be able to start fire (this is not exact)
-	#define MAKEFIRE_CANBUILD (player getVariable ["GRAD_isCrashPilot",false])		//condition to be able to build fires
+	#define MAKEFIRE_CANBUILD (player getVariable ["GRAD_pilotTracking_isPilot",false])		//condition to be able to build fires
 	#define MAKEFIRE_BUILDTIME 10                                                 //time it takes to make the fire
 	#define MAKEFIRE_UPGRADETIME 10                                               //time it takes to upgrade fire
 	#define MAKEFIRE_ADDLVSTIME 10                                                //time it takes to add leaves to the fire
@@ -78,7 +78,7 @@ call compile preprocessfile "helpers\spf_createRelPos.sqf";
 };
 
 [] spawn {
-  #define LEAVENOTES_CANWRITENOTES (player getVariable ["GRAD_isCrashPilot",false])      //condition to be able to write notes
+  #define LEAVENOTES_CANWRITENOTES (player getVariable ["GRAD_pilotTracking_isPilot",false])      //condition to be able to write notes
   #define LEAVENOTES_UNLIMITED true                                             //can write unlimited amount of notes
   #define LEAVENOTES_AMOUNT 2                                                   //amount of notes per player (irrelevant if LEAVENOTES_UNLIMITED)
   #define LEAVENOTES_PLAYERDIST 1                                               //distance to player that notes will be dropped
@@ -207,7 +207,7 @@ if (isServer) then {
 
 	CRASH_PILOTS = [];
 	{
-		if (_x getVariable ["GRAD_isCrashPilot",false]) then {
+		if (_x getVariable ["GRAD_pilotTracking_isPilot",false]) then {
 			// add unit to crash pilots
 			CRASH_PILOTS = CRASH_PILOTS + [_x];
 			publicVariable "CRASH_PILOTS";

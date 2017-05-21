@@ -6,6 +6,7 @@ class GRAD_pilotTracking {
 		class clientLoop {};
 		class createPilotMarker {};
 		class gpsCanReceive {};
+		class openGPS {};
 	};
 
 	class server {
