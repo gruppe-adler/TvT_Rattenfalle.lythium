@@ -18,7 +18,8 @@ if (hasInterface) then {
 ["OPF_F", "Taliban"] call GRAD_Loadout_fnc_FactionSetLoadout;
 ["IND_F", "UsDownedPilot"] call GRAD_Loadout_fnc_FactionSetLoadout;
 
-setViewDistance 3500;
+disableRemoteSensors true;
+setViewDistance 1500;
 enableSentences false;
 enableRadio false;
 // 0 fadeRadio 0;
@@ -35,15 +36,21 @@ jipTime = 60000;
 
 {_x setMarkerAlphaLocal 0;} forEach allMapMarkers;
 
+"mrk_antiair" setMarkerAlphaLocal 1;
+"mrk_antiair2" setMarkerAlphaLocal 1;
+
 
 call compile preprocessfile "Engima\Traffic\Custom_GruppeAdler\createVehicle.sqf";
 call compile preprocessfile "civilianOutrage\randomCivilian.sqf";
-
+call compile preprocessfile "helpers\setLoadoutRandomization.sqf";
 
 
 
 [] execVM "Engima\Traffic\Init.sqf";
 [] execVM "Engima\Civilians\Init.sqf";
+
+[] execVM "grad_sandstorm\init.sqf";
+[] execVM "grad_rotorwash\init.sqf";
 
 If(isNil "spawn_help_fnc_compiled")then{call compile preprocessFileLineNumbers "helpers\findPos.sqf"};
 call compile preprocessfile "SHK_pos\shk_pos_init.sqf";
@@ -101,6 +108,9 @@ if (isServer) then {
 
 	PILOTS_RESCUED = false;
 	publicVariable "PILOTS_RESCUED";
+
+	PILOTS_CAPTURED = false;
+	publicVariable "PILOTS_CAPTURED";
 
 
 	LAST_PILOTS_POSITION = ["irgendwo",[0,0],0]; // name of nearest location, position of pilot, distance to location (becomes radius of marker)

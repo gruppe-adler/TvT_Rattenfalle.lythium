@@ -14,7 +14,7 @@ for [{_x= 1},{_x <= _count},{_x = _x + 1}] do {
 	_singleSandWall = "#particlesource" createVehicleLocal _startPosition;
 	_singleSandWall setParticleCircle [_radius,[0.2, -0.5, -0.5]];
 	_singleSandWall setParticleRandom [0, [_radius, _radius, 0], [0, 0, 0], 0, 0, [0, 0, 0, 0], 0, 0];
-	_singleSandWall setParticleParams [["\A3\data_f\cl_basic.p3d", 1, 0, 1], "", "Billboard", 
+	/*_singleSandWall setParticleParams [["\A3\data_f\cl_basic.p3d", 1, 0, 1], "", "Billboard", 
 	1, 20, 
 	[_dir_xx, _dir_yy*1.5, 0], 
 	[wind select 0, wind select 1, 1],
@@ -22,6 +22,16 @@ for [{_x= 1},{_x <= _count},{_x = _x + 1}] do {
 	[50, 60, 70, 60, 50, 60], 
 	[[0, 0, 0, 0], [0.15, 0.1, 0.05, 0.5], [0.3, 0.2, 0.1, 1], [0.5, 0.35, 0.2, 0.2], [0.15, 0.1, 0.05, 0.5], [0, 0, 0, 0]],
 	[0.08], 0.1, 3, "", "", _singleSandWall];
+	*/
+	_singleSandWall setParticleParams [["\Ca\Data\ParticleEffects\FireAndSmokeAnim\SmokeAnim.p3d", 8, 1, 1, 0], "", "Billboard", 
+	1, 20, 
+	[_dir_xx, _dir_yy*1.5, 0], 
+	[wind select 0, wind select 1, 1],
+	1, 20, 10, 10, 
+	[50, 60, 70, 60, 50, 60], 
+	[[0, 0, 0, 0], [0.15, 0.1, 0.05, 0.5], [0.3, 0.2, 0.1, 1], [0.5, 0.35, 0.2, 0.2], [0.15, 0.1, 0.05, 0.5], [0, 0, 0, 0]],
+	[0.08], 0.1, 3, "", "", _singleSandWall];
+
 	_singleSandWall setDropInterval 0.03;
 
 	_sandWalls = _sandWalls + [_singleSandWall];

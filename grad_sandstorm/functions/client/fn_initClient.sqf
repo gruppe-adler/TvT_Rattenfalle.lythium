@@ -27,9 +27,12 @@ _bigParticleEmitter = [_radius] call grad_sandstorm_fnc_createBigParticles;
     };
 };
 
+_music = addMusicEventHandler ["MusicStop",{playMusic "MKY_Blizzard";}];
+playmusic "LeadTrack01b_F";
+
 _loop = [{
     params ["_args", "_handle"];
-    _args params ["_sandWalls", "_leafEmitter", "_stickEmitter", "_smallParticleEmitter", "_mediumParticleEmitter", "_bigParticleEmitter"];
+    _args params ["_sandWalls", "_leafEmitter", "_stickEmitter", "_smallParticleEmitter", "_mediumParticleEmitter", "_bigParticleEmitter", "_music"];
 
     // move _0 by _1 per second
     [_sandWalls, 1] call grad_sandstorm_fnc_moveSandWall;
@@ -56,6 +59,8 @@ _loop = [{
         deleteVehicle _mediumParticleEmitter;
     	deleteVehicle _bigParticleEmitter;
 
+        removeMusicEventHandler ["MusicStop",_music];
+
         [] spawn {
             grainCounter = 0;
             while {grainCounter>0} do {
@@ -73,4 +78,4 @@ _loop = [{
         };
     };
    
-},1,[_sandWalls, _smallParticleEmitter, _leafEmitter, _stickEmitter, _mediumParticleEmitter, _bigParticleEmitter]] call CBA_fnc_addPerFrameHandler;
+},1,[_sandWalls, _smallParticleEmitter, _leafEmitter, _stickEmitter, _mediumParticleEmitter, _bigParticleEmitter, _music]] call CBA_fnc_addPerFrameHandler;

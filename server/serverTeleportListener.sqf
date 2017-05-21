@@ -33,23 +33,48 @@ createCrashSite=  {
 	{
 		_x setVehicleLock "UNLOCKED";
 	}forEach [
-	us_hq1,
 	rebel_hq1,
 	rebel_hq2,
-	rebel_hq3,
-	rebel_hq4
+	rebel_hq3
 	];
 };
 
 
 
 createRebelsSpawn = {
-	waitUntil {!isNil "spawnMarkerOpforLand"};
 
-	REBEL_SPAWN = getMarkerPos spawnMarkerOpforLand;
+
+	// those must exist
+	_opforSpawnPositions = [
+		trg_base_opfor_1,
+		trg_base_opfor_2,
+		trg_base_opfor_3,
+		trg_base_opfor_4,
+		trg_base_opfor_5
+	];
+
+	_opforSpawnSelect = selectRandom _opforSpawnPositions;
+	
+	_opforSpawnPositions = _opforSpawnPositions - [_opforSpawnSelect];
+
+	[_opforSpawnPositions] spawn {
+		params ["_triggers"];
+		// delay needed to delete stuff
+		sleep 5;
+		{
+			{
+				diag_log format ["deleting %1", _x];
+				deleteVehicle _x;
+			} forEach list _x;
+
+		} forEach _triggers;
+	};
+
+
+	REBEL_SPAWN = getPos _opforSpawnSelect;
 	publicVariable "REBEL_SPAWN";
 
-	"respawn_east" setMarkerPos [REBEL_SPAWN select 0, REBEL_SPAWN select 1, 0];
+	/* "respawn_east" setMarkerPos [REBEL_SPAWN select 0, REBEL_SPAWN select 1, 0]; */
 
 	[{0 = [REBEL_SPAWN,"REBEL_SPAWN"] execVM "player\createLocalDebugMarker.sqf";},"BIS_fnc_spawn",true,true] call BIS_fnc_MP;
 
@@ -63,14 +88,16 @@ createRebelsSpawn = {
 };
 
 createUSSpawn = {
-	waitUntil {!isNil "spawnMarkerBluforLand"};
 
-	US_SPAWN = getMarkerPos spawnMarkerBluforLand;
+	US_SPAWN = getMarkerPos (selectRandom [
+		"mrk_spawn_blufor_1"
+	]);
 	publicVariable "US_SPAWN";
 
 	// trigger for pilot rescue area moved to right position
 	trg_pilots_rescued setPos US_SPAWN;
-	"respawn_west" setMarkerPos [US_SPAWN select 0, US_SPAWN select 1, 0];
+	
+	/* "respawn_west" setMarkerPos [US_SPAWN select 0, US_SPAWN select 1, 0]; */
 
 	[{0 = [US_SPAWN,"US_SPAWN"] execVM "player\createLocalDebugMarker.sqf";},"BIS_fnc_spawn",true,true] call BIS_fnc_MP;
 
@@ -123,7 +150,7 @@ _CRASH_SITE_listener = {
 		checkingObjectives = true;
 		while {checkingObjectives} do {
 				if (PILOTS_RESCUED) exitWith {checkingObjectives=false; BLUFOR_WINS = true; publicVariable "BLUFOR_WINS";};
-				if (PILOTS_DEAD) exitWith {checkingObjectives=false; OPFOR_WINS = true; publicVariable "OPFOR_WINS";};
+				if (PILOTS_CAPTURED) exitWith {checkingObjectives=false; OPFOR_WINS = true; publicVariable "OPFOR_WINS";};
 			sleep 5;
 		};
 };

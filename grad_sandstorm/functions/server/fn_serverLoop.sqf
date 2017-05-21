@@ -25,13 +25,15 @@ _loop = [{
     if (grad_sandstorm_counter > OVERALL_SANDSTORM_DURATION) exitWith {
     	[_handle] call CBA_fnc_removePerFrameHandler;
 
-        30 setFog 0;
+        120 setFog 0;
         setWind [random 1, random 1, true];
 
         [0, 0] remoteExec ["setGusts",0,true];
-        [30,0] remoteExec ["setOvercast",0,true];
+        [120,0] remoteExec ["setOvercast",0,true];
         [] remoteExec ["simulWeatherSync",0,false];
         24 remoteExec ["skipTime",0,false];
+
+        setViewDistance 3500;
 
         GRAD_SANDSTORM_ACTIVE = false;
         publicVariable "GRAD_SANDSTORM_ACTIVE";
