@@ -3,6 +3,9 @@ params ["_unit"];
 private ["_cooldown", "_skyBlocked"];
 
 _skyBlocked = false;
+_onFoot = (vehicle _unit == _unit);
+
+diag_log format ["%1", _onFoot];
 
 // gps needs 10 secs to recalibrate after lost connection
 _cooldown = _unit getVariable ["GRAD_pilotTracking_gpsCooldown", 10];
@@ -12,7 +15,7 @@ if ((count lineIntersectsSurfaces [
         getPosWorld _unit, 
         getPosWorld _unit vectorAdd [0, 0, 50], 
         _unit, objNull, true, 1, "VIEW", "NONE"
-    ] > 0) && (vehicle _unit == _unit)) then {
+    ] > 0) && (_onFoot)) then {
 
 	_skyBlocked = true;
 	hintSilent "GPS lost connection.";
@@ -23,7 +26,7 @@ if ((count lineIntersectsSurfaces [
 	_unit setVariable ["GRAD_pilotTracking_gpsCooldown", ceil(5 + random 5)];
 	
 } else {
-	if (_cooldown > 0 && (vehicle _unit == _unit)) then {
+	if (_cooldown > 0 && (_onFoot)) then {
 
 		// you are not totally safe under objects, small chance to be visible anyway
 		if (random 100 > 10) then {
@@ -38,7 +41,7 @@ if ((count lineIntersectsSurfaces [
 	} else {
 		_skyBlocked = false;
 
-		if (vehicle _unit == _unit) then {
+		if (_onFoot) then {
 			hintSilent "GPS sending position.";
 			diag_log format ["GPS sending position."];
 			["GRAD_pilotTracking_trackingRange", 2000] call CBA_fnc_publicVariable;

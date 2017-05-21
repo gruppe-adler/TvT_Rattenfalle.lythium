@@ -32,27 +32,23 @@ _clientLoop = [{
     };
 
 
-    if (vehicle _unit != _unit) then {
+    if ([_unit] call grad_pilotTracking_fnc_gpsCanReceive) then {
         if (vehicle _unit getVariable ["GRAD_pilotTracking_isVehicleMedical", false]) then {
             _marker setMarkerPos (getPos _unit);
-        }
-    } else {        
-        // GPS
-        if ([_unit] call grad_pilotTracking_fnc_gpsCanReceive) then {
-            _marker setMarkerPos (getPos _unit);
         };
+    };
 
-        // BLOOD TRAIL
-		GRAD_pilotTracking_progress = GRAD_pilotTracking_progress + 1;
-		if (random 1 > 0.9) then {
-			[selectRandom [
-				"blooddrop_1", 
-				"blooddrop_2",
-				"blooddrop_3",
-				"blooddrop_4"
-			], getPos _unit] call ace_medical_blood_fnc_createBlood;
-		};
+    // BLOOD TRAIL
+	GRAD_pilotTracking_progress = GRAD_pilotTracking_progress + 1;
+	if (random 1 > 0.9) then {
+		[selectRandom [
+			"blooddrop_1", 
+			"blooddrop_2",
+			"blooddrop_3",
+			"blooddrop_4"
+		], getPos _unit] call ace_medical_blood_fnc_createBlood;
 	};
+	
 
     _unit sideChat format ["GRAD_pilotTracking_progress is %1", GRAD_pilotTracking_progress];
     _unit sideChat format ["missionTime is %1", GRAD_pilotTracking_missionTime];
