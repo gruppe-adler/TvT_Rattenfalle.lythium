@@ -5,7 +5,7 @@ private ["_cooldown", "_skyBlocked"];
 _skyBlocked = false;
 _onFoot = (vehicle _unit == _unit);
 
-diag_log format ["%1", _onFoot];
+// diag_log format ["onfoot %1", _onFoot];
 
 // gps needs 10 secs to recalibrate after lost connection
 _cooldown = _unit getVariable ["GRAD_pilotTracking_gpsCooldown", 10];

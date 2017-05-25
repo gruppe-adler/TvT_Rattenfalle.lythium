@@ -7,6 +7,7 @@ class GRAD_pilotTracking {
 		class createPilotMarker {};
 		class gpsCanReceive {};
 		class openGPS {};
+		class setBloodBar {};
 	};
 
 	class server {

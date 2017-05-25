@@ -10,12 +10,40 @@ _bluforWinsListener = {
 _opforWinsListener = {
   if (!OPFOR_WINS) exitWith {};
   if (playerside == west || playerside == independent) then {
-      ["Rebels eliminated the pilot.",false,true] call BIS_fnc_endMission;
+      ["Taliban captured the pilot.",false,true] call BIS_fnc_endMission;
   } else {
-      ["Rebels eliminated the pilot.",true,true] call BIS_fnc_endMission;
+      ["Taliban captured the pilot.",true,true] call BIS_fnc_endMission;
   };  
 };
 
 
 "BLUFOR_WINS" addPublicVariableEventHandler _bluforWinsListener;
 "OPFOR_WINS" addPublicVariableEventHandler _opforWinsListener;
+
+if (!isMultiplayer) then {
+    [{BLUFOR_WINS || OPFOR_WINS}, {
+
+    if (BLUFOR_WINS) then {
+
+        diag_log format ["singleplayer: BLUFOR wins"];
+
+        if (playerside == west || playerside == independent) then {
+          ["US troops safely brought their pilot home.",true,true] call BIS_fnc_endMission;
+        } else {
+          ["US troops safely brought their pilot home.",false,true] call BIS_fnc_endMission;
+        };
+
+    } else {
+
+      diag_log format ["singleplayer: OPFOR wins"];
+
+        if (playerside == west || playerside == independent) then {
+          ["Taliban captured the pilot.",false,true] call BIS_fnc_endMission;
+        } else {
+          ["Taliban captured the pilot.",true,true] call BIS_fnc_endMission;
+        }; 
+
+    };
+
+    }, [], 0, {}] call CBA_fnc_waitUntilAndExecute;
+};

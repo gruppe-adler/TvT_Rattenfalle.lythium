@@ -271,5 +271,6 @@ if (hasInterface) then {
 		[] execVM "player\pilotTeleportListener.sqf";
 		[] execVM "player\addSignalPistolEH.sqf";
 		[] spawn checkJIP;
+		
 	};
 };

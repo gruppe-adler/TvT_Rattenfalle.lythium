@@ -1,8 +1,8 @@
 if (hasInterface) then {
 	if (!(player getVariable ["GRAD_pilotTracking_isPilot", false])) exitWith {};
 
-	GRAD_pilotTracking_missionTime = 60; // seconds
-	GRAD_pilotTracking_penaltyBrokenLegDelay = 50; // seconds
+	GRAD_pilotTracking_missionTime = 300; // seconds
+	GRAD_pilotTracking_penaltyBrokenLegDelay = 299; // seconds
 
 	[player] call grad_pilotTracking_fnc_clientLoop;
 };
@@ -14,15 +14,18 @@ if (isServer) then {
 	publicVariable "GRAD_pilotTracking_trackingRange";
 	
 	// for local test purposes
+	/*
 	if (!isMultiplayer) then {
 		{
-			if (!isPlayer _x && _x getVariable ["GRAD_pilotTracking_isPilot", false]) then {
-				_marker = [_x] call GRAD_pilotTracking_fnc_createPilotMarker;
+			if (side player != independent && _x getVariable ["GRAD_pilotTracking_isPilot", false]) then {
 				[_x] call grad_pilotTracking_fnc_clientLoop;
-				_x setVariable ["GRAD_pilotTracking_markerObj", _marker];
+				
 			};
 		} forEach allUnits;
 	};
+	*/
+	/* _marker = [_x] call GRAD_pilotTracking_fnc_createPilotMarker;*/
+	/* _x setVariable ["GRAD_pilotTracking_markerObj", _marker];*/
 
 	// body bag scanner
 	["ace_placedInBodyBag", {
@@ -31,10 +34,10 @@ if (isServer) then {
 
 	        /* private _name = [_deadGuy] call ace_common_fnc_getName; */
 	        private _isPilot = _deadGuy getVariable ["GRAD_pilotTracking_isPilot", false];
-	        private _marker = _deadGuy getVariable ["GRAD_pilotTracking_markerObj", objNull];
+	        /* private _marker = _deadGuy getVariable ["GRAD_pilotTracking_markerObj", objNull];*/
 
 	        if (_isPilot) then {
-	        	[_bodyBag, _marker] call GRAD_pilotTracking_fnc_serverLoop;
+	        	/* [_bodyBag, _marker] call GRAD_pilotTracking_fnc_serverLoop; */
 	        	[_bodyBag, true] call grad_gpsTracker_fnc_setTarget;
 	        	diag_log format ["putting %1 into bodybag %2, its the pilot.", _deadGuy, _bodyBag];
 	        } else {

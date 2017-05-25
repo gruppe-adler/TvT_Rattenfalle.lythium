@@ -7,9 +7,12 @@ createCrashSite=  {
 	crashSpawnPos = [CRASH_SITE,[20,70], random 360] call SHK_pos;
 
 	// find a spawn pos on given position
-	_veh1 = createVehicle ["RHS_AH1Z_GS", crashSpawnPos, [], 0, "CAN_COLLIDE"];
+	_veh1 = createVehicle ["RHS_AH1Z_GS", [crashSpawnPos select 0, crashSpawnPos select 1, .75], [], 0, "CAN_COLLIDE"];
 	[_veh1,	nil,["exhaust_hide", 1,	"at_rack_hide", 0]] call BIS_fnc_initVehicle;
 	_veh1 setVehicleAmmo 0;
+
+	_fire = "test_EmptyObjectForFireBig" createVehicle position _veh1;
+	_fire attachTo [_veh1, [0,0,0]];
 
 	_veh1 setObjectTextureGlobal [0, "\rhsafrf\addons\rhs_a2port_air\mi35\data\camo\mi24p_001_camo2_co.paa"];
 	_veh1 setObjectTextureGlobal [1, "\rhsafrf\addons\rhs_a2port_air\mi35\data\camo\mi24p_002_camo2_co.paa"];

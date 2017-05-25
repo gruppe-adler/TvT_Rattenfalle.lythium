@@ -2,13 +2,47 @@ params ["_unit"];
 
 private ["_marker", "_clientLoop"];
 
-_marker = call grad_pilotTracking_fnc_createPilotMarker;
+_marker = call GRAD_pilotTracking_fnc_createPilotMarker;
+
+
+_unit addMPEventHandler ["MPHit", {
+    _unit = _this select 0;
+    _source = _this select 3;    
+    _damageDone = _unit getVariable ["grad_pilotTracking_pilotIsHit", 0];
+    // not self inflicted damage
+    if (!(_source isEqualTo _unit)) then {
+        switch (_damageDone) do {
+            case 0: { 
+                        _unit setHitPointDamage  ["hitLegs", 0.5];
+                        _unit setVariable ["grad_pilotTracking_pilotIsHit", 1];
+                    };
+            case 1: { 
+                        _unit setHitPointDamage  ["hitHands", 0.5];
+                        _unit setVariable ["grad_pilotTracking_pilotIsHit", 2];
+                    };
+            case 2: { 
+                        _unit setHitPointDamage  ["hitBody", 0.5];
+                        _unit setVariable ["grad_pilotTracking_pilotIsHit", 3];
+                    };
+            case 3: { 
+                        _unit setHitPointDamage  ["hitHead", 1];
+                    };
+            default {};
+            
+        };
+    };
+}];
 
 GRAD_pilotTracking_progress = 0;
 
+disableSerialization;
+"GRAD_rattrap_bloodLevelBar" cutRsc ["GRAD_rattrap_bloodLevelBar", "PLAIN"];
+_bar = uiNamespace getVariable ['GRAD_rattrap_bloodLevelBar',controlNull] displayCtrl 2399;
+
 _clientLoop = [{
     params ["_args", "_handle"];
-    _args params ["_marker", "_unit"];
+    _args params ["_bar", "_marker", "_unit"];
+
 
     // DEAD
     if (!alive _unit) then {
@@ -32,7 +66,7 @@ _clientLoop = [{
     };
 
 
-    if ([_unit] call grad_pilotTracking_fnc_gpsCanReceive) then {
+    if ([_unit] call GRAD_pilotTracking_fnc_gpsCanReceive) then {
         if (vehicle _unit getVariable ["GRAD_pilotTracking_isVehicleMedical", false]) then {
             _marker setMarkerPos (getPos _unit);
         };
@@ -48,13 +82,17 @@ _clientLoop = [{
 			"blooddrop_4"
 		], getPos _unit] call ace_medical_blood_fnc_createBlood;
 	};
+
 	
 
+    /*
     _unit sideChat format ["GRAD_pilotTracking_progress is %1", GRAD_pilotTracking_progress];
-    _unit sideChat format ["missionTime is %1", GRAD_pilotTracking_missionTime];
+    _unit sideChat format ["missionTime is %1", GRAD_pilotTracking_missionTime];*/
 
     _var = GRAD_pilotTracking_progress/GRAD_pilotTracking_missionTime;
-    _unit setVariable ["ace_advanced_fatigue_muscleDamage",_var];
-    _unit sideChat format ["muscle damage is %1", _var];
+    [_bar, _var] call GRAD_pilotTracking_fnc_setBloodBar;
 
-},1,[_marker, _unit]] call CBA_fnc_addPerFrameHandler;
+    _unit setVariable ["ace_advanced_fatigue_muscleDamage",_var];
+    /* _unit sideChat format ["muscle damage is %1", _var]; */
+
+},1,[_bar, _marker, _unit]] call CBA_fnc_addPerFrameHandler;
