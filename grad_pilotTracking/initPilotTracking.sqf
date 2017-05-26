@@ -4,6 +4,9 @@ if (hasInterface) then {
 	GRAD_pilotTracking_missionTime = 300; // seconds
 	GRAD_pilotTracking_penaltyBrokenLegDelay = 299; // seconds
 
+	// initial delay
+	sleep 5;
+
 	[player] call grad_pilotTracking_fnc_clientLoop;
 };
 

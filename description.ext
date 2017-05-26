@@ -26,7 +26,8 @@ class cfgFunctions {
     #include "node_modules\grad-gpsTracker\cfgFunctions.hpp"
 };
 
-class rscTitles {
+class rscTitles {  
+    #include "grad_pilotTracking\rscTitles.hpp"
     #include "rscTitles\rscTitles.hpp"
 };
 
@@ -92,12 +93,17 @@ class ace_map_BFT_HideAiGroups {
 
 class CfgMusic
 {
-  tracks[]={"MKY_Blizzard"};
+  tracks[]={"MKY_Blizzard", "DEATH_MUSIC"};
 
   class MKY_Blizzard
   {
     name = "";
     sound[] = {"\sounds\m0nkey_blizzard.ogg", db+0, 1.0};
+  };
+  class DEATH_MUSIC
+  {
+    name = "";
+    sound[] = {"\sounds\march_hell.ogg", db+0, 1.0};
   };
 };
 
@@ -112,7 +118,6 @@ class CfgSounds
   ouch2,
   ouch3,
   beep,
-  march_hell,
   launch1,
   launch2,
   launch3,

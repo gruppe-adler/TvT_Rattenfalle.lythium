@@ -1,4 +1,4 @@
-params ["_unit"];
+params ["_unit", "_gpsStatus"];
 
 private ["_marker", "_clientLoop"];
 
@@ -39,9 +39,12 @@ disableSerialization;
 "GRAD_rattrap_bloodLevelBar" cutRsc ["GRAD_rattrap_bloodLevelBar", "PLAIN"];
 _bar = uiNamespace getVariable ['GRAD_rattrap_bloodLevelBar',controlNull] displayCtrl 2399;
 
+"gui_pilot_gps_0" cutRsc ["gui_pilot_gps_0", "PLAIN"];
+_gpsStatus = uiNamespace getVariable ['gui_pilot_gps_0',controlNull] displayCtrl 2396;
+
 _clientLoop = [{
     params ["_args", "_handle"];
-    _args params ["_bar", "_marker", "_unit"];
+    _args params ["_bar", "_marker", "_unit", "_gpsStatus"];
 
 
     // DEAD
@@ -66,15 +69,16 @@ _clientLoop = [{
     };
 
 
-    if ([_unit] call GRAD_pilotTracking_fnc_gpsCanReceive) then {
+    if ([_unit, _gpsStatus] call GRAD_pilotTracking_fnc_gpsCanReceive) then {
         if (vehicle _unit getVariable ["GRAD_pilotTracking_isVehicleMedical", false]) then {
             _marker setMarkerPos (getPos _unit);
         };
     };
 
     // BLOOD TRAIL
+    
 	GRAD_pilotTracking_progress = GRAD_pilotTracking_progress + 1;
-	if (random 1 > 0.9) then {
+	if (random 1 > 0.95) then {
 		[selectRandom [
 			"blooddrop_1", 
 			"blooddrop_2",
@@ -82,6 +86,7 @@ _clientLoop = [{
 			"blooddrop_4"
 		], getPos _unit] call ace_medical_blood_fnc_createBlood;
 	};
+    
 
 	
 
@@ -95,4 +100,4 @@ _clientLoop = [{
     _unit setVariable ["ace_advanced_fatigue_muscleDamage",_var];
     /* _unit sideChat format ["muscle damage is %1", _var]; */
 
-},1,[_bar, _marker, _unit]] call CBA_fnc_addPerFrameHandler;
+},1,[_bar, _marker, _unit, _gpsStatus]] call CBA_fnc_addPerFrameHandler;

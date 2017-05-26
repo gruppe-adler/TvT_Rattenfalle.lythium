@@ -26,6 +26,13 @@ _rad = [_this, 3, 200, [200]] call BIS_fnc_param;
 _ang = [_this, 4, random 360, [0]] call BIS_fnc_param;
 _dir = [_this, 5, round random 1, [0]] call BIS_fnc_param;
 
+[
+	[
+		["CRASH SITE","<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><t align = 'center' shadow = '0' size = '1.5' font='EtelkaNarrowMediumPro'>%1</t><br/>",25],
+		["before dawn","<t align = 'center' color='80ffffff' shadow = '0' size = '0.5'>%1</t>",50]
+	]
+] spawn BIS_fnc_typeText;
+
 BIS_fnc_establishingShot_icons = [_this, 6, [], [[]]] call BIS_fnc_param;
 
 private ["_mode"];
@@ -43,7 +50,7 @@ if (_fade) then {
 	["BIS_fnc_establishingShot",false] call BIS_fnc_blackOut;
 } else {
 	// 0 fadeSound 0;
-	titleCut ["", "BLACK FADED", 10e10];
+	titleCut ["", "BLACK", 10e10];
 };
 
 // Create fake UAV
@@ -82,7 +89,7 @@ _ppGrain ppEffectAdjust [0.1, 1, 1, 0, 1];
 _ppGrain ppEffectCommit 0;
 
 // end black screen
-cutText ["", "PLAIN"];
+cutText ["", "PLAIN", 2];
 
 // Disable stuff after simulation starts
 [] spawn
@@ -97,7 +104,7 @@ private ["_SITREP", "_key"];
 if (_mode == 1) then {
 	optionsMenuOpened = {
 		disableSerialization;
-		{(_x call BIS_fnc_rscLayer) cutText ["", "PLAIN"]} forEach ["BIS_layerStatic", "BIS_layerInterlacing"];
+		{(_x call BIS_fnc_rscLayer) cutText ["", "PLAIN", 2];} forEach ["BIS_layerStatic"];
 	};
 } else {
 	// Compile SITREP text
@@ -167,7 +174,7 @@ if (_mode == 1) then {
 	// Remove effects if video options opened
 	optionsMenuOpened = {
 		disableSerialization;
-		{(_x call BIS_fnc_rscLayer) cutText ["", "PLAIN"]} forEach ["BIS_layerEstShot", "BIS_layerStatic", "BIS_layerInterlacing"];
+		{(_x call BIS_fnc_rscLayer) cutText ["", "PLAIN", 2];} forEach ["BIS_layerEstShot", "BIS_layerStatic"];
 	};
 
 	optionsMenuClosed = {
@@ -260,34 +267,29 @@ if (isNil "BIS_fnc_establishingShot_skip") then {
 		enableEnvironment true;
 		2 fadeSound 1;
 
-		// display loading image
-		cutRsc ["gui_pleasewait","PLAIN",0];
-
 		// Static fade-in
 		("BIS_layerStatic" call BIS_fnc_rscLayer) cutRsc ["RscStatic", "PLAIN"];
 		waitUntil {!(isNull (uiNamespace getVariable "RscStatic_display")) || !(isNil "BIS_fnc_establishingShot_skip")};
 		waitUntil {isNull (uiNamespace getVariable "RscStatic_display")  || !(isNil "BIS_fnc_establishingShot_skip")};
 
 		if (isNil "BIS_fnc_establishingShot_skip") then {
-			// Show interlacing
-			("BIS_layerInterlacing" call BIS_fnc_rscLayer) cutRsc ["RscInterlacing", "PLAIN"];
+			
 
 			// Show screen
 			if (_fade) then {
 				("BIS_fnc_blackOut" call BIS_fnc_rscLayer) cutText ["","PLAIN",10e10];
 			} else {
-				titleCut ["", "PLAIN"];
+				titleCut ["", "PLAIN", 2];
 			};
 
 			// Add interlacing to optionsMenuClosed
 			optionsMenuClosed = if (_mode == 0) then {
 				{
 					("BIS_layerEstShot" call BIS_fnc_rscLayer) cutRsc ["RscEstablishingShot", "PLAIN"];
-					("BIS_layerInterlacing" call BIS_fnc_rscLayer) cutRsc ["RscInterlacing", "PLAIN"];
 				};
 			} else {
 				{
-					("BIS_layerInterlacing" call BIS_fnc_rscLayer) cutRsc ["RscInterlacing", "PLAIN"];
+					
 				};
 			};
 
@@ -396,8 +398,8 @@ if (isNil "BIS_fnc_establishingShot_skip") then {
 				};
 
 				private ["_time"];
-				_time = time + 5;
-				waitUntil {time >= _time || !(isNil "GRAD_player_teleported")};
+				_time = time + 15;
+				waitUntil {time >= _time};
 
 				if (isNil "BIS_fnc_establishingShot_skip") then {
 					/*((uiNamespace getVariable "RscEstablishingShot") displayCtrl 2500) ctrlSetPosition [
@@ -470,8 +472,8 @@ if (isNil "BIS_fnc_establishingShot_skip") then {
 
 					private ["_time"];
 					_time = time + 999999;
-					waitUntil {time >= _time || !(isNil "GRAD_player_teleported")};
-					cutText ["", "PLAIN"];
+					waitUntil {time >= _time};
+					cutText ["", "PLAIN", 2];
 
 					if (isNil "BIS_fnc_establishingShot_skip") then {
 						// Register the UAV finished
@@ -493,7 +495,7 @@ if (_mode == 0) then {
 	};
 
 	// Static fade-out
-	2 fadeSound 0;
+	//	0 fadeSound 0;
 
 	("BIS_layerStatic" call BIS_fnc_rscLayer) cutRsc ["RscStatic", "PLAIN"];
 	waitUntil {!(isNull (uiNamespace getVariable "RscStatic_display"))};
@@ -525,8 +527,8 @@ if (_mode == 0) then {
 	{
 		private ["_layer"];
 		_layer = _x call BIS_fnc_rscLayer;
-		_layer cutText ["", "PLAIN"];
-	} forEach ["BIS_layerEstShot", "BIS_layerStatic", "BIS_layerInterlacing"];
+		_layer cutFadeOut 2;
+	} forEach ["BIS_layerEstShot", "BIS_layerStatic"];
 
 	enableEnvironment false;
 
@@ -557,11 +559,15 @@ if (_mode == 0) then {
 	};
 
 	enableEnvironment true;
-	cutText ["", "PLAIN"]; // just repeat once more
+	cutText ["", "PLAIN", 2]; // just repeat once more
 
 	// Start mission
 	BIS_missionStarted = true;
 	BIS_fnc_establishingShot_playing = false;
+
+	cutText ["", "PLAIN", 2];
+
+	["<img size= '6' shadow='false' image='pic\gruppe-adler.paa'/><br/><t size='.9' color='#FFFFFF'></t>",0,0,2,2] spawn BIS_fnc_dynamicText;
 };
 
 true

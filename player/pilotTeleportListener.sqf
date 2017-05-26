@@ -15,13 +15,13 @@ _CRASH_SITE_listener = {
 
 	diag_log format ["pilot spawn is %1",_pos];
 
-	["......"] call EFUNC(common,displayTextStructured);
+	["."] call EFUNC(common,displayTextStructured);
 	waituntil {CRASH_SITE select 0 != 0};
-	["....."] call EFUNC(common,displayTextStructured);
+	[""] call EFUNC(common,displayTextStructured);
 	waituntil {REBEL_SPAWN select 0 != 0};
-	["...."] call EFUNC(common,displayTextStructured);
+	["."] call EFUNC(common,displayTextStructured);
 	waituntil {US_SPAWN select 0 != 0};
-	["..."] call EFUNC(common,displayTextStructured);
+	[""] call EFUNC(common,displayTextStructured);
 
 	[_pos, 50, player] execVM "player\teleportPlayer.sqf";
 

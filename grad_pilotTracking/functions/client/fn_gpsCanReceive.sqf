@@ -1,4 +1,4 @@
-params ["_unit"];
+params ["_unit", "_gpsStatus"];
 
 private ["_cooldown", "_skyBlocked"];
 
@@ -18,7 +18,12 @@ if ((count lineIntersectsSurfaces [
     ] > 0) && (_onFoot)) then {
 
 	_skyBlocked = true;
-	hintSilent "GPS lost connection.";
+	
+	disableSerialization;
+	_gpsStatus ctrlSetText ("grad_pilotTracking\data\gpsicon_0.paa");
+	_gpsStatus ctrlCommit 0;
+		
+	/* hintSilent "GPS lost connection.";*/
 
 	// setting to zero causes error in reception script
 	["GRAD_pilotTracking_trackingRange", 0.1] call CBA_fnc_publicVariable;
@@ -37,17 +42,26 @@ if ((count lineIntersectsSurfaces [
 		_skyBlocked = true;
 		_unit setVariable ["GRAD_pilotTracking_gpsCooldown", _cooldown];
 
-		hintSilent "GPS is recalibrating...";
+		_gpsStatus ctrlSetText ("grad_pilotTracking\data\gpsicon_1.paa");
+		_gpsStatus ctrlCommit 0;
+		
+		// hintSilent "GPS is recalibrating...";
 	} else {
 		_skyBlocked = false;
 
 		if (_onFoot) then {
-			hintSilent "GPS sending position.";
-			diag_log format ["GPS sending position."];
+			_gpsStatus ctrlSetText ("grad_pilotTracking\data\gpsicon_2.paa");
+			_gpsStatus ctrlCommit 0;
+			
+			/*hintSilent "GPS sending position.";
+			diag_log format ["GPS sending position."];*/
 			["GRAD_pilotTracking_trackingRange", 2000] call CBA_fnc_publicVariable;
 		} else {
-			hintSilent "GPS sending position from car.";
-			diag_log format ["GPS sending position from car."];
+			_gpsStatus ctrlSetText ("grad_pilotTracking\data\gpsicon_2.paa");
+			_gpsStatus ctrlCommit 0;
+			
+			/*hintSilent "GPS sending position from car.";
+			diag_log format ["GPS sending position from car."];*/
 			["GRAD_pilotTracking_trackingRange", 10000] call CBA_fnc_publicVariable;
 		};
 	};

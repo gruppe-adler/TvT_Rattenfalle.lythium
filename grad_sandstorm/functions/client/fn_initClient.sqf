@@ -15,17 +15,11 @@ _bigParticleEmitter = [_radius] call grad_sandstorm_fnc_createBigParticles;
 
 
 // start FX
-[] spawn {
-    grainCounter = 0;
-    while {grainCounter<2} do {
-        grainFX = ppEffectCreate ["FilmGrain", 2000]; 
-        grainFX ppEffectEnable true;
-        grainFX ppEffectAdjust [0.1,0.1,grainCounter,0.1,0.1,true];
-        grainFX ppEffectCommit 0;
-        grainCounter = grainCounter + 0.1;
-        sleep 0.5;
-    };
-};
+grainFX = ppEffectCreate ["FilmGrain", 2000]; 
+grainFX ppEffectEnable true;
+grainFX ppEffectAdjust [0.1,0.1,2,0.1,0.1,true];
+grainFX ppEffectCommit 0;
+        
 
 _music = addMusicEventHandler ["MusicStop",{playMusic "MKY_Blizzard";}];
 playmusic "LeadTrack01b_F";

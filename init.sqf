@@ -12,6 +12,8 @@ if (_isDebug == 0) then {
 //
 if (hasInterface) then {
 	cutText ["", "BLACK FADED",1000];
+	enableEnvironment false;
+	0 fadesound 0;
 };
 
 ["BLU_F", "UsMPT"] call GRAD_Loadout_fnc_FactionSetLoadout;
@@ -125,6 +127,9 @@ if (isServer) then {
 	CRASH_SITE = [0,0];
 	publicVariable "CRASH_SITE";
 
+	CRASH_SITE_VEHICLE_POS = [0,0];
+	publicVariable "CRASH_SITE_VEHICLE_POS";
+
 	REBEL_SPAWN = [0,0];
 	publicVariable "REBEL_SPAWN";
 
@@ -230,7 +235,7 @@ if (hasInterface) then {
 		if ((CRASH_SITE select 0 != 0) && didJIP && time > jipTime) then {
 			player setDamage 1;
 		} else {
-			[] call callIntro;
+			[] spawn callIntro;
 			_loadout = player getVariable ["GRAD_loadout","none"];
 			if (_loadout != "none") then {
 				_stringLoadout = "GRAD_getUnitLoadout_" + _loadout;
@@ -242,12 +247,24 @@ if (hasInterface) then {
 
 
 	callIntro = {
-		waitUntil {CRASH_SITE select 0 != 0};
-		0 = [CRASH_SITE,"",1000] execVM "helpers\establishingShot.sqf";
-
+		waitUntil {CRASH_SITE_VEHICLE_POS select 0 != 0};
+		if (!isMultiplayer) then {
+			waitUntil { !isNil "ENGIMA_TRAFFIC_functionsInitialized" };
+		};
+		0 = [
+				CRASH_SITE_VEHICLE_POS,
+				15,
+				30,
+				45,
+				30,
+				0,
+				0.1,
+				false
+			] call grad_fx_fnc_rotatingCam;
+			// ["_target",["_timeout",10],["_radius",50],["_angle",180],["_altitude",15],["_dir",0],["_commitTime",0.1],["_showCinemaBorder",false]];
 	};
 
-	sleep 5;
+	sleep 1;
 
 	// WEST is US
 	if (playerSide == west) then {

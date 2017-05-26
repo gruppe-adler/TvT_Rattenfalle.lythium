@@ -276,30 +276,4 @@
 		};
 	};
 
-	class RscProgress
-	{
-		type = 8;
-		style = 0;
-		colorFrame[] = {1,1,1,0.2};
-		colorBar[] = {0.5,0.07,0.14,1};
-		texture = "#(argb,8,8,3)color(0.5,0.07,0.14,1)";
-		w = 1;
-		h = 0.01;
-	};
-	class GRAD_rattrap_bloodLevelBar
-	{
-		idd = 2399;
-		duration = 10e10;
-		name = "GRAD_rattrap_bloodLevelBar";
-		onLoad = "uiNamespace setVariable ['GRAD_rattrap_bloodLevelBar', (_this select 0)];";
-
-		class Controls
-		{
-			class Progress: RscProgress 
-			{
-				idc = 2399;
-				x = 0;
-				y = ( safeZoneY + safeZoneH ) - 0.02;
-			};
-		};
-	};
+	

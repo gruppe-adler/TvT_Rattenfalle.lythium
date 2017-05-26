@@ -1,5 +1,6 @@
 _bluforWinsListener = {
   if (!BLUFOR_WINS) exitWith {};
+  checkObjectives = false;
   if (playerside == west || playerside == independent) then {
       ["US troops safely brought their pilot home.",true,true] call BIS_fnc_endMission;
   } else {
@@ -9,6 +10,7 @@ _bluforWinsListener = {
 
 _opforWinsListener = {
   if (!OPFOR_WINS) exitWith {};
+  checkObjectives = false;
   if (playerside == west || playerside == independent) then {
       ["Taliban captured the pilot.",false,true] call BIS_fnc_endMission;
   } else {
@@ -24,7 +26,7 @@ if (!isMultiplayer) then {
     [{BLUFOR_WINS || OPFOR_WINS}, {
 
     if (BLUFOR_WINS) then {
-
+        checkObjectives = false;
         diag_log format ["singleplayer: BLUFOR wins"];
 
         if (playerside == west || playerside == independent) then {
@@ -34,7 +36,7 @@ if (!isMultiplayer) then {
         };
 
     } else {
-
+      checkObjectives = false;
       diag_log format ["singleplayer: OPFOR wins"];
 
         if (playerside == west || playerside == independent) then {

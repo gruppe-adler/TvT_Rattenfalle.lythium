@@ -4,10 +4,11 @@
 
 createCrashSite=  {
 	// find a random position in circle
-	crashSpawnPos = [CRASH_SITE,[20,70], random 360] call SHK_pos;
+	CRASH_SITE_VEHICLE_POS = [CRASH_SITE,[20,70], random 360] call SHK_pos;
+	publicVariable "CRASH_SITE_VEHICLE_POS";
 
 	// find a spawn pos on given position
-	_veh1 = createVehicle ["RHS_AH1Z_GS", [crashSpawnPos select 0, crashSpawnPos select 1, .75], [], 0, "CAN_COLLIDE"];
+	_veh1 = createVehicle ["RHS_AH1Z_GS", [CRASH_SITE_VEHICLE_POS select 0, CRASH_SITE_VEHICLE_POS select 1, .75], [], 0, "CAN_COLLIDE"];
 	[_veh1,	nil,["exhaust_hide", 1,	"at_rack_hide", 0]] call BIS_fnc_initVehicle;
 	_veh1 setVehicleAmmo 0;
 
@@ -65,12 +66,12 @@ createRebelsSpawn = {
 
 	[_opforSpawnPositions] spawn {
 		params ["_triggers"];
-		// delay needed to delete stuff
-		sleep 5;
+		
 		{
 			{
 				diag_log format ["deleting %1", _x];
 				deleteVehicle _x;
+				sleep 0.5;
 			} forEach list _x;
 
 		} forEach _triggers;

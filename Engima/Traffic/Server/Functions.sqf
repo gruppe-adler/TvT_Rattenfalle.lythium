@@ -49,6 +49,7 @@ ENGIMA_TRAFFIC_FindEdgeRoads = {
 		_minTopRightDistances pushBack 1000000;
 		_minBottomRightDistances pushBack 1000000;
 		_minBottomLeftDistances pushBack 1000000;
+		sleep 0.01;
 	};
 
 	
@@ -57,7 +58,7 @@ ENGIMA_TRAFFIC_FindEdgeRoads = {
 	sleep 0.01;
 	_segmentsCount = count ENGIMA_TRAFFIC_allRoadSegments;
 
-	
+	/* hintsilent format ["ENGIMA found %1 road segments.",_segmentsCount];*/
 	diag_log format ["ENGIMA found %1 road segments.",_segmentsCount];
 	
 

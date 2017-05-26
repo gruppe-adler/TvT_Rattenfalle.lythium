@@ -4,6 +4,7 @@ class GRAD_fx {
 		file = grad_fx\functions\client;
 
 		class createLightPoint {};
+		class rotatingCam {};
 	};
 
 	class server {
