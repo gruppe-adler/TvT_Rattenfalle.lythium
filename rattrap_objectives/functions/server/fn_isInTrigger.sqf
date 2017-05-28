@@ -14,9 +14,9 @@ if (_isAlivePilot) then {
 	} forEach CRASH_PILOTS;
 } else {
 	_bodyBag = missionNamespace getVariable ["GRAD_pilotTracking_bodyBag", objNull];
-
-	diag_log format ["bodybag %2 compared to list of  is %1", list _trigger, _bodyBag];
+	
 	if (_bodyBag in list _trigger) then {
+		diag_log format ["bodybag %2 compared to list of  is %1", list _trigger, _bodyBag];
 		_result = true;
 	};
 };
