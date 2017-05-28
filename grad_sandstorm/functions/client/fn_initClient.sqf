@@ -37,7 +37,7 @@ _loop = [{
         _smallParticleEmitter, 
         _mediumParticleEmitter, 
         _bigParticleEmitter
-        ]] call grad_sandstorm_fnc_moveBigParticles;
+        ]] call grad_sandstorm_fnc_moveParticles;
 
 
     // how close at sandstorm till damage effect

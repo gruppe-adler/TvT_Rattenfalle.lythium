@@ -18,6 +18,7 @@ respawnDialog = 0;
 #define GUNLIGHTS
 
 class cfgFunctions {
+    #include "rattrap_objectives\cfgFunctions.hpp"
     #include "grad_fx\cfgFunctions.hpp"
     #include "grad_rotorwash\cfgFunctions.hpp"  
     #include "grad_pilotTracking\cfgFunctions.hpp"

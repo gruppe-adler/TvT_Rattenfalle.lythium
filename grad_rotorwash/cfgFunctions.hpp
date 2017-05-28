@@ -4,7 +4,6 @@ class GRAD_rotorwash {
 		file = grad_rotorwash\functions\client;
 
 		class adjustParams {};
-		class clientLoop {};
 		class createLingerEmitter {};
 		class createStoneEmitter {};
 		class createWashEmitter {};

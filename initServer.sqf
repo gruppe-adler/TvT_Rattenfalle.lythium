@@ -1,6 +1,6 @@
 [] execVM "server\civPointedAtListener.sqf";
 [] execVM "server\civQuestioning.sqf";
-
+[] execVM "rattrap_objectives\init.sqf";
 
 // description.ext parameters
 _timeOfDay = "TimeOfDay" call BIS_fnc_getParamValue;

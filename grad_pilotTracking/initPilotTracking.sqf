@@ -41,6 +41,7 @@ if (isServer) then {
 
 	        if (_isPilot) then {
 	        	/* [_bodyBag, _marker] call GRAD_pilotTracking_fnc_serverLoop; */
+	        	missionNamespace setVariable ["GRAD_pilotTracking_bodyBag", _bodyBag, true];
 	        	[_bodyBag, true] call grad_gpsTracker_fnc_setTarget;
 	        	diag_log format ["putting %1 into bodybag %2, its the pilot.", _deadGuy, _bodyBag];
 	        } else {
