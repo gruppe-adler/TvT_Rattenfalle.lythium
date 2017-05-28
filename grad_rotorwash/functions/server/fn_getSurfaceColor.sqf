@@ -8,7 +8,7 @@ _colorG = 0.15;
 _colorB = 0.1;
 _alpha = 0.8;
 
-if (!isNil "GRAD_SANDSTORM_ACTIVE" && {GRAD_SANDSTORM_ACTIVE}) then {
+if ((!isNil "GRAD_SANDSTORM_ACTIVE") && {GRAD_SANDSTORM_ACTIVE}) then {
 	_colorR = 0.25; _colorG = 0.23; _colorB = 0.21; _alpha = 1;
 } else {
 	switch (surfaceType _point) do {
@@ -16,9 +16,9 @@ if (!isNil "GRAD_SANDSTORM_ACTIVE" && {GRAD_SANDSTORM_ACTIVE}) then {
 
 		case "#GdtStratisConcrete": { _colorR = 0.7; _colorG = 0.65; _colorB = 0.6; _alpha = 0.1; };
 
-		case "gbr_es_tierra12": { _colorR = 0.05; _colorG = 0.03; _colorB = 0.01; _alpha = 0.2; };
-		case "gbr_es_tierra1": { _colorR = 0.15; _colorG = 0.13; _colorB = 0.11; _alpha = 0.5; };
-		case "gbr_es_tierra2": { _colorR = 0.25; _colorG = 0.23; _colorB = 0.21; _alpha = 0.9; };
+		case "gbr_es_tierra12": { _colorR = 0.0; _colorG = 0.0; _colorB = 0.0; _alpha = 0; };
+		case "gbr_es_tierra1": { _colorR = 0.25; _colorG = 0.23; _colorB = 0.21; _alpha = 1; };
+		case "gbr_es_tierra2": { _colorR = 0.25; _colorG = 0.23; _colorB = 0.21; _alpha = 1; };
 
 		case "#ZRPolopoust": { _colorR = 0.25; _colorG = 0.23; _colorB = 0.21; _alpha = 1; /* zarga desert */ };
 		case "#ZRTrava": { _colorR = 0; _colorG = 0; _colorB = 0; _alpha = 0; /* zarga grass */ };

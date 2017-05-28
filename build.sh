@@ -5,7 +5,7 @@ cpbo_path="$1"
 missionname="TvT_Rattrap"
 
 islands=(
-	Tanoa
+	lythium
 )
 
 ### AS AS USER, DONT EDIT BELOW THIS LINE ###

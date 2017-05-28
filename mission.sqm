@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={11605.643,129.22919,2726.3809};
-		dir[]={-0.82170647,-0.56961793,-0.019337531};
-		up[]={-0.56946743,0.82190627,-0.01340139};
-		aside[]={-0.023527397,1.5223486e-007,0.99974322};
+		pos[]={11477.538,37.509842,2314.2532};
+		dir[]={-0.17134133,-0.28497174,0.94312704};
+		up[]={-0.050940722,0.95852965,0.28039837};
+		aside[]={0.98392028,2.6641646e-007,0.17875306};
 	};
 };
 binarizationWanted=0;
@@ -649,16 +649,16 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={11816.184,24.601114,2339.1311};
-			angle=1.5817043;
+			angle=1.5817045;
 			class Attributes
 			{
 				name="trg_pilots_rescued";
-				condition="call{(checkObjectives) && {({isPlayer _x && side _x == independent } count thislist == {isPlayer _x && side _x == independent} count allUnits)}}";
+				condition="call{(checkObjectives) && {({side _x == independent } count thislist == {side _x == independent} count allUnits)}}";
 				onActivation="PILOTS_RESCUED = true; publicVariable ""PILOTS_RESCUED""; diag_log format [""alle lebenden Piloten gerettet""];";
 				sizeA=120;
 				sizeB=80;
 				interuptable=1;
-				activationBy="ANY";
+				activationBy="GUER";
 				isRectangle=1;
 				isServerOnly=1;
 			};
@@ -669,11 +669,11 @@ class Mission
 		class Item14
 		{
 			dataType="Trigger";
-			position[]={12011.627,33.179691,1924.4128};
+			position[]={12011.627,33.179691,1924.413};
 			class Attributes
 			{
 				name="trg_pilots_dead";
-				condition="(checkObjectives) && {({isPlayer _x && side _x == independent} count allUnits == 0)}";
+				condition="call{(checkObjectives) && {({side _x == independent} count allUnits == 0)}}";
 				onActivation="PILOTS_DEAD = true; publicVariable ""PILOTS_DEAD""; diag_log format [""alle Piloten eliminiert""];";
 				sizeA=0;
 				sizeB=0;
@@ -695,8 +695,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={11479.674,23.185217,2340.741};
-						angles[]={0.014109671,0,6.2825875};
+						position[]={11514.387,22.797098,2460.3699};
+						angles[]={0.0070251585,0,6.2818937};
 					};
 					side="Independent";
 					flags=6;
@@ -706,7 +706,6 @@ class Mission
 						init="call{this setVariable [""GRAD_pilotTracking_isPilot"",true];}";
 						name="pilot";
 						description="Abgeschossener Pilot";
-						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -3492,6 +3491,7 @@ class Mission
 					{
 						rank="CAPTAIN";
 						description="SQL";
+						isPlayable=1;
 					};
 					id=231;
 					type="O_Soldier_F";
@@ -4219,6 +4219,7 @@ class Mission
 					{
 						rank="CAPTAIN";
 						description="SQL";
+						isPlayer=1;
 						isPlayable=1;
 					};
 					id=239;
@@ -14813,7 +14814,7 @@ class Mission
 			class Attributes
 			{
 				name="trg_pilots_captured";
-				condition="call{(checkObjectives) && {({isPlayer _x && side _x == independent } count thislist == {isPlayer _x && side _x == independent} count allUnits)}}";
+				condition="call{(checkObjectives) && {({side _x == independent } count thislist == {side _x == independent} count allUnits)}}";
 				onActivation="call{PILOTS_CAPTURED = true; publicVariable ""PILOTS_CAPTURED""; diag_log format [""alle lebenden Piloten gefangen""];}";
 				sizeA=10;
 				sizeB=10;
@@ -17506,12 +17507,12 @@ class Mission
 		class Item295
 		{
 			dataType="Trigger";
-			position[]={4166.5044,592.50714,17483.67};
-			angle=2.1041682;
+			position[]={4166.5039,592.50708,17483.67};
+			angle=2.1041684;
 			class Attributes
 			{
 				name="trg_pilots_captured_1";
-				condition="call{(checkObjectives) && {({isPlayer _x && side _x == independent } count thislist == {isPlayer _x && side _x == independent} count allUnits)}}";
+				condition="call{(checkObjectives) && {({side _x == independent } count thislist == {side _x == independent} count allUnits)}}";
 				onActivation="call{PILOTS_CAPTURED = true; publicVariable ""PILOTS_CAPTURED""; diag_log format [""alle lebenden Piloten gefangen""];}";
 				sizeB=30;
 				interuptable=1;
@@ -17521,16 +17522,17 @@ class Mission
 			};
 			id=629;
 			type="EmptyDetector";
+			atlOffset=-6.1035156e-005;
 		};
 		class Item296
 		{
 			dataType="Trigger";
-			position[]={2353.2957,404.45752,15099.731};
-			angle=0.06845139;
+			position[]={2353.2959,404.45749,15099.731};
+			angle=0.068451814;
 			class Attributes
 			{
 				name="trg_pilots_captured_2";
-				condition="call{(checkObjectives) && {({isPlayer _x && side _x == independent } count thislist == {isPlayer _x && side _x == independent} count allUnits)}}";
+				condition="call{(checkObjectives) && {({side _x == independent } count thislist == {side _x == independent} count allUnits)}}";
 				onActivation="call{PILOTS_CAPTURED = true; publicVariable ""PILOTS_CAPTURED""; diag_log format [""alle lebenden Piloten gefangen""];}";
 				sizeA=30;
 				sizeB=20;
@@ -17541,6 +17543,7 @@ class Mission
 			};
 			id=630;
 			type="EmptyDetector";
+			atlOffset=-3.0517578e-005;
 		};
 		class Item297
 		{
