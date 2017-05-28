@@ -31,6 +31,6 @@ if ((!isNil "GRAD_SANDSTORM_ACTIVE") && {GRAD_SANDSTORM_ACTIVE}) then {
 
 /* hint format ["surfaceType is %1", surfaceType _point]; */
 
-grad_transparency = _alpha; // todo: make this less abysmal
+// grad_transparency = _alpha; // todo: make this less abysmal
 
-[_colorR, _colorG, _colorB]
+[_colorR, _colorG, _colorB, _alpha]

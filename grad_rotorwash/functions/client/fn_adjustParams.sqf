@@ -1,4 +1,4 @@
-params ["_heli", "_point", "_color"];
+params ["_heli", "_point", "_color", "_alpha"];
 
 grad_colorR = _color select 0;
 grad_colorG = _color select 1;
@@ -9,7 +9,7 @@ private ["_linger", "_wash"];
 _height = (getPosATL (_heli)) select 2;
 _speed = speed _heli;
 
-grad_transparency = grad_transparency - (0.025*_height);
+_alpha = _alpha - (0.025*_height);
 
 
 
@@ -19,16 +19,16 @@ if (_speed < 1) then {
 	_heli setVariable ["grad_rotorwash_emitterStatic", _timer];
 
 	if (_timer > 30) then {
-		grad_transparency =  grad_transparency/4;
+		_alpha =  _alpha/4;
 	} else {
 		if (_timer > 20) then {
-			grad_transparency = grad_transparency/3;
+			_alpha = _alpha/3;
 		} else {
 			if (_timer > 10) then {
-				grad_transparency = grad_transparency/2;
+				_alpha = _alpha/2;
 			} else {
 				if (_timer > 5) then {
-					grad_transparency = grad_transparency/1.5;
+					_alpha = _alpha/1.5;
 				};
 			};
 		};
@@ -71,7 +71,7 @@ if (!isMultiplayer) then {
 				grad_weight,
 				grad_volume,
 				grad_rubbing,
-				grad_transparency, 
+				_alpha, 
 				_height, 
 				grad_intensity,
 				grad_bounce,
@@ -94,11 +94,11 @@ _wash setParticleParams [
 		 [6, 7, 8, 9, 11], 
 		 [
 		 	[grad_colorR/4, grad_colorG/4, grad_colorB/4, 0],
-		 	[grad_colorR/3, grad_colorG/3, grad_colorB/3, 1 * grad_transparency],
-		 	[grad_colorR/2, grad_colorG/2, grad_colorB/2, 1 * grad_transparency],
-		 	[grad_colorR/1.2, grad_colorG/1.2, grad_colorB/1.2, 1 * grad_transparency],
-		 	[grad_colorR, grad_colorG, grad_colorB, 1 * grad_transparency],
-		 	[grad_colorR*1.5, grad_colorG*1.5, grad_colorB*1.5, 1 * grad_transparency/2],
+		 	[grad_colorR/3, grad_colorG/3, grad_colorB/3, 1 * _alpha],
+		 	[grad_colorR/2, grad_colorG/2, grad_colorB/2, 1 * _alpha],
+		 	[grad_colorR/1.2, grad_colorG/1.2, grad_colorB/1.2, 1 * _alpha],
+		 	[grad_colorR, grad_colorG, grad_colorB, 1 * _alpha],
+		 	[grad_colorR*1.5, grad_colorG*1.5, grad_colorB*1.5, 1 * _alpha/2],
 		 	[grad_colorR*2, grad_colorG*2, grad_colorB*2, 0]
 		 ], 
 		 [1000], 0, 0, "", "", _wash, 0, true, grad_bounce];
@@ -127,9 +127,9 @@ _linger setParticleParams [
 		 [
 		 	
 		 	[grad_colorR, grad_colorG, grad_colorB, 0],
-		 	[grad_colorR, grad_colorG, grad_colorB, 1.0 * grad_transparency],
-		 	[grad_colorR*1.2, grad_colorG*1.2, grad_colorB*1.2, 1.0 * grad_transparency],
-		 	[grad_colorR*1.5, grad_colorG*1.5, grad_colorB*1.5, 1.0 * grad_transparency],
+		 	[grad_colorR, grad_colorG, grad_colorB, 1.0 * _alpha],
+		 	[grad_colorR*1.2, grad_colorG*1.2, grad_colorB*1.2, 1.0 * _alpha],
+		 	[grad_colorR*1.5, grad_colorG*1.5, grad_colorB*1.5, 1.0 * _alpha],
 		 	[grad_colorR*2, grad_colorG*2, grad_colorB*2, 0]
 		 ], 
 		 [0.08], 0, 0, "", "", _linger];
