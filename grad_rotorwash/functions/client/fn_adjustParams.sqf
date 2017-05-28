@@ -1,8 +1,9 @@
-params ["_heli", "_point", "_color", "_alpha"];
+params ["_heli", "_point", "_color"];
 
 grad_colorR = _color select 0;
 grad_colorG = _color select 1;
 grad_colorB = _color select 2;
+_alpha = _color select 3;
 
 private ["_linger", "_wash"];
 

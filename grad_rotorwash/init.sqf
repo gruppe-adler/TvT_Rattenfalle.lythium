@@ -48,6 +48,9 @@ if (hasInterface) then {
  				
  				[_this select 0] spawn {
  					params ["_heli"];
+ 					if (_heli getVariable ["grad_rotorwash_startingup", false]) then {
+ 						_heli setVariable ["grad_rotorwash_startingup", true];
+ 					};
  					_heli setVariable ["grad_rotorwash_emitterStatic",31];
  					sleep 1;
  					_heli setVariable ["grad_rotorwash_emitterStatic",21];
@@ -57,6 +60,7 @@ if (hasInterface) then {
  					_heli setVariable ["grad_rotorwash_emitterStatic",6];
  					sleep 1;
  					_heli setVariable ["grad_rotorwash_emitterStatic",0];
+ 					_heli setVariable ["grad_rotorwash_startingup", false];
  				};
  			};
  		}
