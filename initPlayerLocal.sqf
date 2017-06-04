@@ -31,6 +31,7 @@ player addEventhandler ["HandleRating", {
 
 0 = execVM "player\animations\addWavingInteraction.sqf";
 0 = execVM "player\addObjectiveListener.sqf";
+[] execVM "rattrap_objectives\init.sqf";
 
 
 // for local execution of interrogation actions

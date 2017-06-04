@@ -6,8 +6,8 @@ setWind [random _windStrength, random _windStrength, true];
 
 [0, 1] remoteExec ["setGusts",0,true];
 [_changeTime,_rainValue] remoteExec ["setOvercast",0,true];
-[] remoteExec ["simulWeatherSync",0,false];
-24 remoteExec ["skipTime",0,false];
+/*[] remoteExec ["simulWeatherSync",0,false];
+24 remoteExec ["skipTime",0,false];*/
 
 
 grad_sandstorm_counter = 0;
