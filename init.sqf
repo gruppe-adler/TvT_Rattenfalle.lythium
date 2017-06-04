@@ -27,13 +27,6 @@ enableRadio false;
 // 0 fadeRadio 0;
 showChat false;
 
-waitUntil {!isNil "DEBUG"};
-diag_log format ["DEBUG IS %1"];
-if (DEBUG) then {
-checkObjectives = false; // false is debug for playing without pilot
-} else {
-checkObjectives = true;
-};
 jipTime = 60000;
 
 {_x setMarkerAlphaLocal 0;} forEach allMapMarkers;

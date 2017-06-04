@@ -1,3 +1,5 @@
+checkObjectives = true;
+
 _bluforWinsListener = {
   if (!BLUFOR_WINS) exitWith {};
   checkObjectives = false;

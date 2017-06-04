@@ -50,4 +50,6 @@ _this spawn {
  
     _camera cameraEffect ["terminate","back"];
     camDestroy _camera;
+
+    1 fadesound 1;
 };
