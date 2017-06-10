@@ -19230,7 +19230,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={4184.9038,593.35535,17513.09};
-			angle=3.734864;
+			angle=3.7348628;
 			class Attributes
 			{
 				name="trg_pilots_captured_1";

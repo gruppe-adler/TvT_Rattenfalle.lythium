@@ -23,7 +23,8 @@ GRAD_SANDSTORM_ACTIVE = true;
 
 
     if (hasInterface) then {      
-        [500, windDir] call grad_sandstorm_fnc_initClient;        
+        [500, windDir] call grad_sandstorm_fnc_initClient;   
+        call grad_sandstorm_fnc_addForeCast;     
     };
 
 }, [], GRAD_SANDSTORM_INITIAL_DELAY] call CBA_fnc_waitAndExecute;
