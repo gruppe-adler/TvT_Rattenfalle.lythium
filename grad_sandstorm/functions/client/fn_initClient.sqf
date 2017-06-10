@@ -31,7 +31,7 @@ _loop = [{
     _args params ["_sandWalls", "_leafEmitter", "_stickEmitter", "_smallParticleEmitter", "_mediumParticleEmitter", "_bigParticleEmitter", "_music", "_sandWallParticleDistance"];
 
     // sync Sandwall
-    [_sandWalls] call grad_sandstorm_fnc_moveSandWall;
+    [_sandWalls, _sandWallParticleDistance] call grad_sandstorm_fnc_moveSandWall;
     
     [[
         _leafEmitter, 
@@ -43,7 +43,7 @@ _loop = [{
 
 
     // how close at sandstorm till damage effect
-    [200, _sandWallParticleDistance] call grad_sandstorm_fnc_checkPlayerDamage;
+    [200] call grad_sandstorm_fnc_checkPlayerDamage;
 
 
     if (!GRAD_SANDSTORM_ACTIVE) exitWith {
