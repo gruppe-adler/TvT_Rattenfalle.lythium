@@ -3,6 +3,7 @@ class GRAD_sandstorm {
 	class client {
 		file = grad_sandstorm\functions\client;
 
+		class addForeCast {};
 		class checkPlayerDamage {};
 		class createBigParticles {};
 		class createLeafs {};

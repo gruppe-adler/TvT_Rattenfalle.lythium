@@ -2,7 +2,8 @@ params ["_radius"];
 
 
 if ( 
-	((vehicle player) isKindOf 'Air') &&   
+	(GRAD_SANDSTORM_ACTIVE &&
+	(vehicle player) isKindOf 'Air') &&   
 	{isEngineOn (vehicle player)}
   	
 	) then {
@@ -14,12 +15,10 @@ if (
 		   if (random 1 > 0.95) then {
 		   		vehicle player setHitPointDamage [selectRandom ["HitGlass1", "HitGlass2"], 0.9];
 			};
-		   
-		   
-		   _damage = (vehicle player) getHitPointDamage 'hitEngine';
+		};
+		 _damage = (vehicle player) getHitPointDamage 'hitEngine';
 			(vehicle player) setHitPointDamage ['hitEngine', _damage + 0.0016, false];
 			(vehicle player) setHitPointDamage ['HitBatteries', _damage + 0.0016, false];
-		};
 	};
 };
 

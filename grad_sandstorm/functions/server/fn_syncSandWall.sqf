@@ -16,6 +16,4 @@ if (_sandWallMove) exitWith {
 };
 
 // default: move marker around
-{ 
-	"mrk_sandstorm" setMarkerPos (_x getPos [_speed, windDir]); 
-} forEach _sandWalls;
+"mrk_sandstorm" setMarkerPos ((_sandWalls select 0) getPos [_speed, windDir]);

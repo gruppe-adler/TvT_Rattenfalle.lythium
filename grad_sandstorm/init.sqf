@@ -9,6 +9,7 @@
 GRAD_SANDSTORM_OVERALL_SANDSTORM_DURATION = 600; // total time after which weather is reset
 GRAD_SANDSTORM_CHANCE_TO_MOVE = 1; // chance per second in % to move sandwall to a different location
 GRAD_SANDSTORM_INITIAL_DELAY = 0.1; // initial delay
+GRAD_SANDSTORM_COUNTER = 0;
 
 GRAD_SANDSTORM_ACTIVE = true;
 

@@ -10,7 +10,7 @@ setWind [random _windStrength, random _windStrength, true];
 24 remoteExec ["skipTime",0,false];*/
 
 
-grad_sandstorm_counter = 0;
+
 
 _loop = [{
     params ["_args", "_handle"];
@@ -20,9 +20,9 @@ _loop = [{
     [ceil (random 5), GRAD_SANDSTORM_CHANCE_TO_MOVE] call grad_sandstorm_fnc_syncSandWall;
    
 
-    grad_sandstorm_counter = grad_sandstorm_counter + 1;
+    GRAD_SANDSTORM_COUNTER = GRAD_SANDSTORM_COUNTER + 1;
 
-    if (grad_sandstorm_counter > OVERALL_SANDSTORM_DURATION) exitWith {
+    if (GRAD_SANDSTORM_COUNTER > OVERALL_SANDSTORM_DURATION) exitWith {
     	[_handle] call CBA_fnc_removePerFrameHandler;
 
         120 setFog 0;
@@ -41,3 +41,15 @@ _loop = [{
     };
    
 },1,[]] call CBA_fnc_addPerFrameHandler;
+
+_syncSandstormLoop = [{
+    params ["_args", "_handle"];
+    _args params [];
+
+    publicVariable "GRAD_SANDSTORM_COUNTER";
+
+    if (GRAD_SANDSTORM_COUNTER > OVERALL_SANDSTORM_DURATION) exitWith {
+        [_handle] call CBA_fnc_removePerFrameHandler;   
+    };
+   
+},10,[]] call CBA_fnc_addPerFrameHandler;
