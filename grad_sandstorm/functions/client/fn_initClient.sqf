@@ -2,8 +2,10 @@ params [["_radius",500],["_angle",windDir]];
 
 enableCamShake true;
 
+_sandWallParticleDistance = 120;
+
 // startposition, vector, movement speed in m/s, count
-_sandWalls = [getMarkerPos "mrk_sandstorm", 120, 3] call grad_sandstorm_fnc_createSandWall;
+_sandWalls = [getMarkerPos "mrk_sandstorm", _sandWallParticleDistance, 3] call grad_sandstorm_fnc_createSandWall;
 
 _smallParticleEmitter = call grad_sandstorm_fnc_createSmallParticles;
 _leafEmitter = call grad_sandstorm_fnc_createLeafs;
@@ -26,10 +28,10 @@ playmusic "LeadTrack01b_F";
 
 _loop = [{
     params ["_args", "_handle"];
-    _args params ["_sandWalls", "_leafEmitter", "_stickEmitter", "_smallParticleEmitter", "_mediumParticleEmitter", "_bigParticleEmitter", "_music"];
+    _args params ["_sandWalls", "_leafEmitter", "_stickEmitter", "_smallParticleEmitter", "_mediumParticleEmitter", "_bigParticleEmitter", "_music", "_sandWallParticleDistance"];
 
-    // move _0 by _1 per second
-    [_sandWalls, 1] call grad_sandstorm_fnc_moveSandWall;
+    // sync Sandwall
+    [_sandWalls] call grad_sandstorm_fnc_moveSandWall;
     
     [[
         _leafEmitter, 
@@ -41,7 +43,7 @@ _loop = [{
 
 
     // how close at sandstorm till damage effect
-    [200] call grad_sandstorm_fnc_checkPlayerDamage;
+    [200, _sandWallParticleDistance] call grad_sandstorm_fnc_checkPlayerDamage;
 
 
     if (!GRAD_SANDSTORM_ACTIVE) exitWith {
@@ -72,4 +74,4 @@ _loop = [{
         };
     };
    
-},1,[_sandWalls, _smallParticleEmitter, _leafEmitter, _stickEmitter, _mediumParticleEmitter, _bigParticleEmitter, _music]] call CBA_fnc_addPerFrameHandler;
+},1,[_sandWalls, _smallParticleEmitter, _leafEmitter, _stickEmitter, _mediumParticleEmitter, _bigParticleEmitter, _music, _sandWallParticleDistance]] call CBA_fnc_addPerFrameHandler;
