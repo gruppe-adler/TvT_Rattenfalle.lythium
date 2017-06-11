@@ -74,4 +74,4 @@ _loop = [{
         };
     };
    
-},1,[_sandWalls, _smallParticleEmitter, _leafEmitter, _stickEmitter, _mediumParticleEmitter, _bigParticleEmitter, _music, _sandWallParticleDistance]] call CBA_fnc_addPerFrameHandler;
+},5,[_sandWalls, _smallParticleEmitter, _leafEmitter, _stickEmitter, _mediumParticleEmitter, _bigParticleEmitter, _music, _sandWallParticleDistance]] call CBA_fnc_addPerFrameHandler;

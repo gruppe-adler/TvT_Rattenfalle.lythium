@@ -17,14 +17,14 @@ if (_isAlivePilot) then {
 				_result = true;
 			} else {
 				_x setVariable [_saveVariable,(_inTriggerSince + 1)];
-				diag_log format ["trigger time %1", _inTriggerSince];
-				hintSilent format ["trigger time %1", _inTriggerSince];
+				/*diag_log format ["trigger time %1", _inTriggerSince];
+				hintSilent format ["trigger time %1", _inTriggerSince];*/
 			};
 		} else {
 			_x setVariable [_saveVariable, 0];
-
+			/*
 			diag_log format ["trigger time %1", 0];
-			hintSilent format ["trigger time %1", 0];
+			hintSilent format ["trigger time %1", 0];*/
 		};
 
 	} forEach CRASH_PILOTS;
@@ -40,13 +40,13 @@ if (_isAlivePilot) then {
 			_result = true;
 		} else {
 			_bodyBag setVariable [_saveVariable,_inTriggerSince + 1];
-			diag_log format ["trigger time %1", _inTriggerSince];
-				hintSilent format ["trigger time %1", _inTriggerSince];
+			/* diag_log format ["trigger time %1", _inTriggerSince];
+			hintSilent format ["trigger time %1", _inTriggerSince];*/
 		};
 	} else {
 		_bodyBag setVariable [_saveVariable, 0];
-		diag_log format ["trigger time %1", 0];
-		hintSilent format ["trigger time %1", 0];
+		/*diag_log format ["trigger time %1", 0];
+		hintSilent format ["trigger time %1", 0];*/
 	};
 };
 

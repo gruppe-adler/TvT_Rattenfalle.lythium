@@ -9,7 +9,7 @@ _colorB = 0.1;
 _alpha = 0.8;
 
 if ((!isNil "GRAD_SANDSTORM_ACTIVE") && {GRAD_SANDSTORM_ACTIVE}) then {
-	_colorR = 0.25; _colorG = 0.23; _colorB = 0.21; _alpha = 1;
+	_colorR = 0.14; _colorG = 0.13; _colorB = 0.12; _alpha = 1;
 } else {
 	switch (surfaceType _point) do {
 		case "#GdtDesert": { _colorR = 0.3; _colorG = 0.25; _colorB = 0.2; _alpha = 1; };

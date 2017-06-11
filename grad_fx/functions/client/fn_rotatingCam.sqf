@@ -39,15 +39,12 @@ _this spawn {
  
         _camera camPreparePos _coords;
         _camera camCommitPrepared _commitTime;
- 
+
         waitUntil {camCommitted _camera || !(mcd_rotateCamRunning)};
- 
-        _camera camPreparePos _coords;
-        _camera camCommitPrepared 0;
  
         _angle = if (_dir == 0) then {_angle - 1} else {_angle + 1};
     };
- 
+
     _camera cameraEffect ["terminate","back"];
     camDestroy _camera;
 
@@ -61,4 +58,5 @@ _this spawn {
             ["setup and go","<t align = 'center' color='#33ffffff' shadow = '0' size = '0.5'>%1</t>",50]
         ]
     ] spawn BIS_fnc_typeText;
+
 };

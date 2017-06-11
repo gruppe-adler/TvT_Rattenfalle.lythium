@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=757;
+		nextID=805;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={2452.2566,515.3371,15189.913};
-		dir[]={-0.62395084,-0.58116198,-0.52249867};
-		up[]={-0.44557592,0.8137784,-0.37312746};
-		aside[]={-0.6420418,1.4924444e-007,0.76670796};
+		pos[]={16721.771,382.10492,10339.899};
+		dir[]={-0.87408316,-0.073856428,0.48020461};
+		up[]={-0.06474334,0.99726784,0.035568416};
+		aside[]={0.48151875,9.7008888e-007,0.87648064};
 	};
 };
 binarizationWanted=0;
@@ -19230,7 +19230,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={4184.9038,593.35535,17513.09};
-			angle=3.7348628;
+			angle=3.7348611;
 			class Attributes
 			{
 				name="trg_pilots_captured_1";
