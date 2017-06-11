@@ -44,8 +44,10 @@ call compile preprocessfile "helpers\setLoadoutRandomization.sqf";
 [] execVM "Engima\Traffic\Init.sqf";
 [] execVM "Engima\Civilians\Init.sqf";
 
+/*
 [] execVM "grad_sandstorm\init.sqf";
 [] execVM "grad_rotorwash\init.sqf";
+*/
 
 If(isNil "spawn_help_fnc_compiled")then{call compile preprocessFileLineNumbers "helpers\findPos.sqf"};
 call compile preprocessfile "SHK_pos\shk_pos_init.sqf";
@@ -228,7 +230,7 @@ if (hasInterface) then {
 		if ((CRASH_SITE select 0 != 0) && didJIP && time > jipTime) then {
 			player setDamage 1;
 		} else {
-			[] spawn callIntro;
+			// [] spawn callIntro;
 			_loadout = player getVariable ["GRAD_loadout","none"];
 			if (_loadout != "none") then {
 				_stringLoadout = "GRAD_getUnitLoadout_" + _loadout;
@@ -283,4 +285,8 @@ if (hasInterface) then {
 		[] spawn checkJIP;
 		
 	};
+
+	1 fadesound 1;
+
+    cutRsc ["RscStatic", "PLAIN" , 3];
 };

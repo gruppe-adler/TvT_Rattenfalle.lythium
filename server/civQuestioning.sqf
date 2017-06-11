@@ -33,13 +33,15 @@ GRAD_fnc_questionCiv = {
       sleep 4;
       [position _civilian,_sentenceGetOffMe, []] remoteExec ["GRAD_fnc_showQuestioningAnswer", [0, -2] select isMultiplayer, false];
       _civilian setVariable ["civ_occupied",false,true];
+      _civilian doFollow _civilian;
    };
  
    if (_civilian getVariable ["isInterviewedByEast",false] && side _player == east) exitWith {
       [position _civilian,"Nochmal: Wo ist der Pilot?", []] remoteExec ["GRAD_fnc_showQuestioningAnswer", [0, -2] select isMultiplayer, false];
       sleep 4;
       [position _civilian,_sentenceGetOffMe, []] remoteExec ["GRAD_fnc_showQuestioningAnswer", [0, -2] select isMultiplayer, false];
-    _civilian setVariable ["civ_occupied",false,true];
+      _civilian setVariable ["civ_occupied",false,true];
+      _civilian doFollow _civilian;
    };
 
   _civilian setVariable ["civ_occupied",true,true];
