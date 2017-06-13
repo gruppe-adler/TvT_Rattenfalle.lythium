@@ -1,3 +1,5 @@
+/*
+
 GRAD_civInterrogationAnimations = [
     "AidlPercSnonWnonDnon_talk1"
 ];
@@ -60,3 +62,5 @@ GRAD_fnc_stopCiv = {
 
     _civ doFollow _civ;
 };
+
+*/

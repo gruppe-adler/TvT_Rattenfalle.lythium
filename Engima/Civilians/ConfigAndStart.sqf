@@ -35,8 +35,10 @@ _parameters = [
 	["BLACKLIST_MARKERS", []],
 	["HIDE_BLACKLIST_MARKERS", true],
 	["ON_UNIT_SPAWNED_CALLBACK", {
-		(_this select 0) enableDynamicSimulation true;
-		[(_this select 0)] execVM "Engima\Civilians\Custom\civInterrogation.sqf";
+		params ["_civ"];
+		_civ enableDynamicSimulation true;
+		_civ call GRAD_civs_fnc_dressAndBehave;
+		[_civ] call grad_civs_fnc_addConversationAnswers;
 	}],
 	["ON_UNIT_REMOVE_CALLBACK", { true }],
 	["DEBUG", false]

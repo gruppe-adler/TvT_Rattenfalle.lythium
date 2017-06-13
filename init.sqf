@@ -36,13 +36,13 @@ jipTime = 60000;
 
 
 call compile preprocessfile "Engima\Traffic\Custom_GruppeAdler\createVehicle.sqf";
-call compile preprocessfile "civilianOutrage\randomCivilian.sqf";
 call compile preprocessfile "helpers\setLoadoutRandomization.sqf";
 
 
 
 [] execVM "Engima\Traffic\Init.sqf";
 [] execVM "Engima\Civilians\Init.sqf";
+[] execVM "grad_civs\init.sqf";
 
 /*
 [] execVM "grad_sandstorm\init.sqf";
@@ -220,10 +220,6 @@ if (isServer) then {
 
 
 if (hasInterface) then {
-
-
-
-	0 = [] execVM "player\createWeaponOnCivilianPointer.sqf";
 
 	// JIP handling
 	checkJIP = {

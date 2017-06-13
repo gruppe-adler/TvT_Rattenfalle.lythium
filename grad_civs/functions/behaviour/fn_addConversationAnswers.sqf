@@ -78,13 +78,15 @@ if (random 1 < 0.8) then {
 	_unit setVariable ["civ_knowsSomething",false,true];
 };
 
+/*
 _unit addEventHandler ["FiredNear", {
 		_this execVM 'civilianOutrage\civilianFiredNear.sqf';
 }];
+*/
 
 _unit addEventHandler ["Hit", {
 		_questioned = (_this select 0) getVariable ["civ_questioned",0];
 		(_this select 0) setVariable ["civ_questioned",_questioned + 0.4,true];
 }];
 
-_unit remoteExec ["GRAD_fnc_addQuestioningAction", [0,-2] select isDedicated, true];
+_unit remoteExec ["GRAD_civs_fnc_addQuestioningAction", [0,-2] select isDedicated, true];
