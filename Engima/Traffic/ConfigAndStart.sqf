@@ -68,7 +68,11 @@ _parameters = [
 	["MAX_SPAWN_DISTANCE", 2000],
 	["MIN_SKILL", 0.4],
 	["MAX_SKILL", 0.6],
-  ["AREA_MARKER", "mrk_drive_area"],
+  	["AREA_MARKER", "mrk_drive_area"],
+  	["ON_SPAWN_CALLBACK", {
+		// check createvehicle.sqf
+	}],
+	["ON_REMOVE_CALLBACK", { true }],
 	["DEBUG", false]
 ];
 

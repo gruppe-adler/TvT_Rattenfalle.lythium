@@ -1,3 +1,4 @@
+/*
 _unit = _this select 0;
 _firer = _this select 1;
 
@@ -38,3 +39,4 @@ _unit addEventHandler ["FiredNear", {
 }];
 
 true
+*/

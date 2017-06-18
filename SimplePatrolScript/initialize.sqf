@@ -1,4 +1,6 @@
+/*
 if (!hasInterface && !isDedicated) then {
+    
     // run spawn script
     _amount = _this select 0;
 	_marker = _this select 1;
@@ -28,3 +30,4 @@ if (!hasInterface && !isDedicated) then {
 
 	};
 };
+*/

@@ -4,7 +4,7 @@
 
 
 params ["_unit"];
-
+_unit setVariable ["asr_ai_exclude", true];
 /*
 _stripHim = {
 	_it = _this select 0;
@@ -60,8 +60,10 @@ _addBackpack = {
 
 _addBehaviour = {
 	group (_this select 0) setBehaviour "CARELESS";
+	/*
 	(_this select 0) disableAI "TARGET";
 	(_this select 0) disableAI "AUTOTARGET";
+	*/
 	(_this select 0) disableAI "FSM";
 };
 
@@ -72,6 +74,7 @@ _addKilledNews = {
      CIV_KILLED = [(position (_this select 0)), (_this select 0) getVariable ["ace_medical_lastDamageSource", objNull]];
      diag_log format ["civ killed: %1",CIV_KILLED];
      publicVariableServer "CIV_KILLED";
+     
      (_this select 0) removeAllEventHandlers "Killed";
      (_this select 0) removeAllEventHandlers "FiredNear";
      (_this select 0) switchMove "";
@@ -80,6 +83,7 @@ _addKilledNews = {
     }];
 };
 
+/*
 _addGunfightNewsAndFlee = {
    (_this select 0) addEventhandler ["FiredNear",
     {
@@ -87,7 +91,7 @@ _addGunfightNewsAndFlee = {
     	diag_log format ["civ gunfight at %1",CIV_GUNFIGHT_POS];
     	publicVariableServer "CIV_GUNFIGHT_POS";
 
-    	if ((_this select 0) getVariable ["GRAD_fleeing",false]) exitWith {};
+    	if ((_this select 0) getVariable ["GRAD_civs_isFleeing",false]) exitWith {};
 
 		_thisUnit = _this select 0;
 
@@ -102,14 +106,15 @@ _addGunfightNewsAndFlee = {
 		};
     }];
 };
+*/
 
 // _stripped = [_unit] call _stripHim;
 [_unit, _unitLoadout] call _reclotheHim;
 
-_unit setVariable ["asr_ai_exclude", true];
+
 
 [_unit] call _addKilledNews;
-[_unit] call _addGunfightNewsAndFlee;
+/*[_unit] call _addGunfightNewsAndFlee;*/
 [_unit] call _addBehaviour;
 [_unit] call _addBeard;
 [_unit] call _addBackpack;

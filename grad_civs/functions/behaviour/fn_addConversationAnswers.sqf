@@ -66,9 +66,9 @@ _unit setVariable ["sentenceQuestionRage", [
 	"Wo ist der Pilot, verdammte Kacke! Rücks raus!"
 	]];
 
-_unit setVariable ["civ_questioned",0,true];
-_unit setVariable ["civ_revealed",false,true];
-_unit setVariable ["civ_occupied",false,true];
+_unit setVariable ["GRAD_civs_isQuestioned",0,true];
+_unit setVariable ["GRAD_civs_hasRevealed",false,true];
+_unit setVariable ["GRAD_civs_isOccupied",false,true];
 
 _unit setVariable ["BIS_noCoreConversations", true];
 
@@ -85,8 +85,8 @@ _unit addEventHandler ["FiredNear", {
 */
 
 _unit addEventHandler ["Hit", {
-		_questioned = (_this select 0) getVariable ["civ_questioned",0];
-		(_this select 0) setVariable ["civ_questioned",_questioned + 0.4,true];
+		_questioned = (_this select 0) getVariable ["GRAD_civs_isQuestioned",0];
+		(_this select 0) setVariable ["GRAD_civs_isQuestioned",_questioned + 0.4,true];
 }];
 
 _unit remoteExec ["GRAD_civs_fnc_addQuestioningAction", [0,-2] select isDedicated, true];

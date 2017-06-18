@@ -12,7 +12,11 @@ createrebelVehicle = {
 
 		_crewDriver = _grp0 createUnit ["C_man_1", _pos, [], 0, "CARGO"];
 
-		[_crewDriver] call grad_civs_fnc_dressAndBehave; // rebel loadout
+		_crewDriver enableDynamicSimulation true;
+		_crewDriver call GRAD_civs_fnc_dressAndBehave;
+		[_crewDriver] call GRAD_civs_fnc_addConversationAnswers;
+		[_crewDriver] call GRAD_civs_fnc_addBrainEventhandler;
+
 		[_crewDriver, _car0, true] call ACE_VehicleLock_fnc_addKeyForVehicle;
 		_car0 setFuel 0.1;
 
@@ -20,6 +24,8 @@ createrebelVehicle = {
 		_crewDriver moveInDriver _car0;
 		sleep 0.1;
 		_crewDriver action ["lightOn", _car0];
+
+		_crewDriver setVariable ["GRAD_civs_carOwnerOf", _car0];
 		// hintsilent format ["ordered %1 to enter %2", _crewDriver,_car0];
 	};
 
@@ -31,7 +37,10 @@ createrebelVehicle = {
 
 		_crewCargo disableAI "FSM";
 
-		[_crewCargo] call grad_civs_fnc_dressAndBehave; // rebel loadout
+		_crewCargo enableDynamicSimulation true;
+		_crewCargo call GRAD_civs_fnc_dressAndBehave;
+		[_crewCargo] call GRAD_civs_fnc_addConversationAnswers;
+		[_crewCargo] call GRAD_civs_fnc_addBrainEventhandler;
 
 		_crewCargo assignAsCargo _car1;
 		_crewCargo moveInCargo _car1;

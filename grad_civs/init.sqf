@@ -1,3 +1,5 @@
+GRAD_CIV_DEBUG = true;
+
 if (isServer) then {
 
 	GRAD_civ_clothes = [];
@@ -9,8 +11,6 @@ if (isServer) then {
 	GRAD_CIV_MIN_SPAWN_DISTANCE = 1000;
 	GRAD_CIV_MAX_SPAWN_DISTANCE = 4500;
 
-	GRAD_CIV_DEBUG = false;
-
 	// do not edit below //
 	GRAD_CIV_ONFOOT_COUNT = 0;
 	GRAD_CIV_ONFOOT_GROUPS = [];
@@ -20,13 +20,11 @@ if (isServer) then {
 
 };
 
-DEBUG_MODE = true;
-
 if (hasInterface) then {
 
 	call GRAD_civs_fnc_playerLoop;
 
-	if (!isNil "DEBUG_MODE" && {DEBUG_MODE}) then {
+	if (GRAD_CIV_DEBUG) then {
 		call GRAD_civs_fnc_showWhatTheyThink;
 	};
 

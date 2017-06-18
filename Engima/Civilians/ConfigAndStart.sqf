@@ -38,7 +38,8 @@ _parameters = [
 		params ["_civ"];
 		_civ enableDynamicSimulation true;
 		_civ call GRAD_civs_fnc_dressAndBehave;
-		[_civ] call grad_civs_fnc_addConversationAnswers;
+		[_civ] call GRAD_civs_fnc_addConversationAnswers;
+		[_civ] call GRAD_civs_fnc_addBrainEventhandler;
 	}],
 	["ON_UNIT_REMOVE_CALLBACK", { true }],
 	["DEBUG", false]

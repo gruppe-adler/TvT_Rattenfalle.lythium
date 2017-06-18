@@ -3,11 +3,13 @@ class GRAD_civs {
 	class behaviour {
         file = grad_civs\functions\behaviour;
 
+        class addBrainEventhandler {};
         class addConversationAnswers {};
         class findPositionOfInterest {};
-        class fleeAndFake {};
         class fleeYouFool {};
+        class getOpposingDirection {};
         class stopCiv {};
+        class stopCivAbort {};
 		class taskPatrol {};
     };
 
