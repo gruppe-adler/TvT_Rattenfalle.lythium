@@ -19,6 +19,7 @@ GRAD_SANDSTORM_ACTIVE = true;
     if (isServer) then {
        // _changeTime, _fogValue, _rainValue, _windStrength
        [1, 0.6, 0.45, 15] call grad_sandstorm_fnc_serverLoop;
+       [GRAD_SANDSTORM_OVERALL_SANDSTORM_DURATION] call grad_sandstorm_fnc_startSandstormTime;
     };
 
 

@@ -15,6 +15,7 @@ class GRAD_sandstorm {
 		class initClient {};
 		class moveParticles {};
 		class moveSandWall {};
+		class sandStormTimerCountdown {};
 
 	};
 
@@ -23,6 +24,7 @@ class GRAD_sandstorm {
 
 		class serverLoop {};
 		class syncSandWall {};
+		class startSandstormTime {};
 		
 	};
 };
