@@ -30,7 +30,7 @@ _marker = createMarkerLocal [format ["pilotmarker_%1", _markerPos],_markerPos];
 _marker setMarkerTypeLocal "mil_unknown";
 _marker setMarkerColorLocal "ColorBlufor";
 _marker setMarkerShapeLocal "ELLIPSE";
-_marker setMarkerSizeLocal [_trackingPrecision, _trackingPrecision];
+_marker setMarkerSizeLocal [_trackingPrecision*2, _trackingPrecision*2];
 _marker setMarkerBrushLocal "Solid";
 _marker setMarkerAlphaLocal 0.5;
 

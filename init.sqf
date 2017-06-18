@@ -32,7 +32,9 @@ jipTime = 60000;
 {_x setMarkerAlphaLocal 0;} forEach allMapMarkers;
 
 "mrk_antiair" setMarkerAlphaLocal 1;
+"mrk_antiair_1" setMarkerAlphaLocal 1;
 "mrk_antiair2" setMarkerAlphaLocal 1;
+"mrk_antiair3" setMarkerAlphaLocal 1;
 
 
 call compile preprocessfile "Engima\Traffic\Custom_GruppeAdler\createVehicle.sqf";

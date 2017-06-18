@@ -90,7 +90,7 @@ createRebelsSpawn = {
 			if ((!isPlayer _x) && side _x == east) then {
 				[REBEL_SPAWN, 50, _x] execVM "player\teleportPlayer.sqf";
 			};
-		} forEach allUnits;
+		} forEach (playableUnits + switchableUnits);
 	};
 };
 
@@ -113,7 +113,7 @@ createUSSpawn = {
 			if ((!isPlayer _x) && side _x == west) then {
 				[US_SPAWN, 50, _x] execVM "player\teleportPlayer.sqf";
 			};
-		} forEach allUnits;
+		} forEach (playableUnits + switchableUnits);
 	};
 
 };
@@ -141,7 +141,7 @@ _CRASH_SITE_listener = {
 			if ((!isPlayer _x) && side _x == independent) then {
 				[CRASH_SITE, 50, _x] execVM "player\teleportPlayer.sqf";
 			};
-		} forEach allUnits;
+		} forEach (playableUnits + switchableUnits);
 	};
 	/*
 	_crashSitePos = _this select 0; // Helicopter crashSite Position
