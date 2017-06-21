@@ -1,10 +1,6 @@
  ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups;
 
-if (isMultiplayer) then {
-	joinTime = serverTime;
-} else {
-	joinTime = time;
-};
+joinTime = CBA_missionTime;
 
 GRAD_GPS_TRACKER_OPEN = false;
 
